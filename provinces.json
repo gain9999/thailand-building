@@ -424,7 +424,7 @@
   ],
   "buildings": 41350,
   "with_height": 24702,
-  "pmtiles_mb": 3.6,
+  "pmtiles_mb": 13.2,
   "pop_bbox": [
    100.26499887893999,
    13.787500280849988,
@@ -1436,7 +1436,7 @@
   ],
   "buildings": 531,
   "with_height": 531,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 0.7,
   "pop_bbox": [
    103.98416553073,
    16.78416693552999,
@@ -1459,7 +1459,7 @@
   ],
   "buildings": 493,
   "with_height": 493,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 2.8,
   "pop_bbox": [
    103.24666553367999,
    17.76666693159999,
@@ -1482,7 +1482,7 @@
   ],
   "buildings": 431,
   "with_height": 431,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 6.5,
   "pop_bbox": [
    103.25333220031999,
    16.770000268919986,
@@ -1505,7 +1505,7 @@
   ],
   "buildings": 371,
   "with_height": 347,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 10.4,
   "pop_bbox": [
    99.73166554774,
    7.090000307639987,
@@ -1528,7 +1528,7 @@
   ],
   "buildings": 369,
   "with_height": 363,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 4.3,
   "pop_bbox": [
    102.05749887177,
    17.590833598969986,
@@ -1551,7 +1551,7 @@
   ],
   "buildings": 368,
   "with_height": 368,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 1.9,
   "pop_bbox": [
    102.01749887192999,
    16.800000268799987,
@@ -1574,7 +1574,7 @@
   ],
   "buildings": 333,
   "with_height": 333,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 9.7,
   "pop_bbox": [
    99.98416554673,
    15.910833605689989,
@@ -1597,7 +1597,7 @@
   ],
   "buildings": 310,
   "with_height": 310,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 3.6,
   "pop_bbox": [
    103.0999988676,
    16.179166937949987,
@@ -1620,7 +1620,7 @@
   ],
   "buildings": 294,
   "with_height": 293,
-  "pmtiles_mb": 0.0,
+  "pmtiles_mb": 10.2,
   "pop_bbox": [
    100.83499887666,
    5.615833646869987,
@@ -1643,7 +1643,7 @@
   ],
   "buildings": 217,
   "with_height": 191,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 4.8,
   "pop_bbox": [
    99.71666554779999,
    14.901666943059988,
@@ -1666,7 +1666,7 @@
   ],
   "buildings": 197,
   "with_height": 195,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 10.2,
   "pop_bbox": [
    104.07249886371,
    16.182500271269987,
@@ -1689,7 +1689,7 @@
   ],
   "buildings": 121,
   "with_height": 121,
-  "pmtiles_mb": 0.0,
+  "pmtiles_mb": 2.8,
   "pop_bbox": [
    101.98333220539999,
    16.765833602269986,
@@ -1712,7 +1712,7 @@
   ],
   "buildings": 81,
   "with_height": 75,
-  "pmtiles_mb": 0.0,
+  "pmtiles_mb": 1.0,
   "pop_bbox": [
    99.89833221373999,
    17.16166693401999,
@@ -1735,7 +1735,7 @@
   ],
   "buildings": 73,
   "with_height": 73,
-  "pmtiles_mb": 0.0,
+  "pmtiles_mb": 6.2,
   "pop_bbox": [
    101.01833220926,
    6.549166976469988,
