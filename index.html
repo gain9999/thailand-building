@@ -30,6 +30,21 @@
     background: #eee; color: #333; border: 1px solid #ccc; padding: 0;
   }
   #infoBtn:hover { background: #ddd; }
+  #searchBox {
+    width: 100%; box-sizing: border-box; margin: 6px 0 4px;
+    font-size: 13px; padding: 6px 8px; border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  #searchResults {
+    display: none; max-height: 180px; overflow-y: auto;
+    border: 1px solid #ddd; border-radius: 6px; margin-bottom: 4px;
+    background: #fff; font-size: 12px;
+  }
+  #searchResults div {
+    padding: 6px 8px; cursor: pointer; border-bottom: 1px solid #f0f0f0;
+  }
+  #searchResults div:hover { background: #f5f5f5; }
+  #searchResults div:last-child { border-bottom: none; }
   #infoModal {
     display: none; position: fixed; z-index: 100; left: 0; top: 0;
     width: 100%; height: 100%; background: rgba(0,0,0,0.4);
@@ -60,6 +75,8 @@
   <b>Thailand buildings &amp; population</b><br>
   <span class="sub">Buildings: GlobalBuildingAtlas (footprints ODbL, heights CC BY-NC 4.0)<br>
   People per building: range from DOPA 2025 + WorldPop 2027, split by footprint &times; floors (est.)</span><br>
+  <input id="searchBox" type="text" placeholder="Search place in Thailand… (Enter)" autocomplete="off">
+  <div id="searchResults"></div>
   <select id="prov"></select><br>
   <label><input type="radio" name="mode" value="buildings" checked> buildings</label>
   <label><input type="radio" name="mode" value="population"> population</label>
@@ -120,6 +137,42 @@
   document.getElementById("infoBtn").addEventListener("click", () => { infoModal.style.display = "block"; });
   document.getElementById("infoClose").addEventListener("click", () => { infoModal.style.display = "none"; });
   infoModal.addEventListener("click", (e) => { if (e.target === infoModal) infoModal.style.display = "none"; });
+
+  // place search via Nominatim (biased to Thailand)
+  const searchBox = document.getElementById("searchBox");
+  const searchResults = document.getElementById("searchResults");
+  let searchTimer = null;
+  searchBox.addEventListener("input", () => {
+    clearTimeout(searchTimer);
+    const q = searchBox.value.trim();
+    if (q.length < 3) { searchResults.style.display = "none"; return; }
+    searchTimer = setTimeout(async () => {
+      try {
+        const url = "https://nominatim.openstreetmap.org/search?format=json&limit=6&countrycodes=th&q=" + encodeURIComponent(q);
+        const res = await fetch(url, { headers: { "Accept": "application/json" } });
+        const items = await res.json();
+        if (!items.length) {
+          searchResults.innerHTML = "<div>No results</div>";
+        } else {
+          searchResults.innerHTML = items.map((it, i) =>
+            `<div data-i="${i}">${it.display_name.split(",").slice(0, 3).join(",")}</div>`).join("");
+          searchResults.querySelectorAll("div[data-i]").forEach(el => {
+            el.addEventListener("click", () => {
+              const it = items[+el.dataset.i];
+              map.flyTo({ center: [+it.lon, +it.lat], zoom: 14, duration: 1200 });
+              searchResults.style.display = "none";
+              searchBox.value = it.display_name.split(",")[0];
+            });
+          });
+        }
+        searchResults.style.display = "block";
+      } catch (e) { /* ignore */ }
+    }, 400);
+  });
+  // hide results when clicking elsewhere
+  document.addEventListener("click", (e) => {
+    if (e.target !== searchBox && e.target !== searchResults) searchResults.style.display = "none";
+  });
 
   let provinces = [];
   let mode = "buildings";
