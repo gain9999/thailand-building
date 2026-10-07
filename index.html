@@ -80,7 +80,8 @@
   <select id="prov"></select><br>
   <label><input type="radio" name="mode" value="buildings" checked> buildings</label>
   <label><input type="radio" name="mode" value="population"> population</label>
-  <label><input type="checkbox" id="threeD"> 3D</label><br>
+  <label><input type="checkbox" id="threeD"> 3D</label>
+  <label><input type="checkbox" id="osm3d" checked> OSM detail</label><br>
   <label><input type="checkbox" id="follow" checked> follow map</label>
   <div class="sub" id="meta">–</div>
   <div id="legend">
@@ -99,6 +100,7 @@
     <ul>
       <li><b>Footprints:</b> OpenStreetMap + Microsoft ML footprints (ODbL license) merged with Google Open Buildings (CC BY 4.0)</li>
       <li><b>Heights:</b> GBA LoD1 height model (CC BY-NC 4.0 — non-commercial use only)</li>
+      <li><b>3D detail:</b> OpenStreetMap buildings (© OpenStreetMap contributors) rendered for visual detail where GBA data exists; all popups show GBA-derived data</li>
       <li>Coverage varies: some rural provinces have incomplete footprints (flagged with ⚠)</li>
     </ul>
     <h4>Population estimates</h4>
@@ -131,6 +133,37 @@
     maxBounds: [[96.5, 4.8], [106.5, 21.2]]
   });
   map.addControl(new maplibregl.NavigationControl(), "bottom-right");
+
+  // OSM 3D buildings (visual detail layer, non-interactive)
+  // Only visible where GBA data is loaded; GBA remains the clickable data layer
+  map.on("load", () => {
+    map.addSource("osm-buildings", {
+      type: "vector",
+      url: "https://tiles.openfreemap.org/planet"
+    });
+    map.addLayer({
+      id: "osm-3d",
+      type: "fill-extrusion",
+      source: "osm-buildings",
+      "source-layer": "building",
+      minzoom: 14,
+      paint: {
+        "fill-extrusion-color": "#d9c9b8",
+        "fill-extrusion-height": ["coalesce", ["get", "render_height"], 8],
+        "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
+        "fill-extrusion-opacity": 0.85
+      },
+      layout: { visibility: "none" }
+    });
+  });
+
+  function updateOsmVisibility() {
+    // Show OSM 3D only when GBA provinces are loaded (don't show where GBA is missing)
+    const show = loaded.size > 0 && document.getElementById("osm3d").checked;
+    if (map.getLayer("osm-3d")) {
+      map.setLayoutProperty("osm-3d", "visibility", show ? "visible" : "none");
+    }
+  }
 
   // info modal
   const infoModal = document.getElementById("infoModal");
@@ -210,6 +243,7 @@
     document.querySelectorAll('input[name="mode"]').forEach(el =>
       el.addEventListener("change", () => { mode = el.value; applyLayers(); }));
     document.getElementById("threeD").addEventListener("change", applyLayers);
+    document.getElementById("osm3d").addEventListener("change", updateOsmVisibility);
   }
 
   function provinceAt(lng, lat) {
@@ -295,6 +329,7 @@
         map.on("mouseleave", lid, () => { map.getCanvas().style.cursor = ""; });
       }
       applyLayers();
+      updateOsmVisibility();
       updateMeta();
       st.textContent = "";
     } catch (e) {
