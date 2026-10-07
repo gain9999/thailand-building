@@ -80,7 +80,6 @@
   <select id="prov"></select><br>
   <label><input type="radio" name="mode" value="buildings" checked> buildings</label>
   <label><input type="radio" name="mode" value="population"> population</label>
-  <label><input type="checkbox" id="threeD"> 3D</label>
   <label><input type="checkbox" id="osm3d" checked> OSM detail</label><br>
   <label><input type="checkbox" id="follow" checked> follow map</label>
   <div class="sub" id="meta">–</div>
@@ -130,6 +129,7 @@
     style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
     center: [100.62, 13.70],
     zoom: 10.5,
+    pitch: 55,
     maxBounds: [[96.5, 4.8], [106.5, 21.2]]
   });
   map.addControl(new maplibregl.NavigationControl(), "bottom-right");
@@ -242,7 +242,6 @@
     });
     document.querySelectorAll('input[name="mode"]').forEach(el =>
       el.addEventListener("change", () => { mode = el.value; applyLayers(); }));
-    document.getElementById("threeD").addEventListener("change", applyLayers);
     document.getElementById("osm3d").addEventListener("change", updateOsmVisibility);
   }
 
@@ -274,16 +273,16 @@
   function layerId(base, slug) { return base + "--" + slug; }
 
   function applyLayers() {
-    const is3d = document.getElementById("threeD").checked;
+    const is3d = true; // 3D always on
     const isPop = mode === "population";
     for (const slug of loaded) {
-      setVis(layerId("buildings-fill", slug), !isPop && !is3d);
-      setVis(layerId("buildings-line", slug), !isPop && !is3d);
-      setVis(layerId("buildings-3d", slug), !isPop && is3d);
-      setVis(layerId("buildings-pop", slug), isPop && !is3d);
-      setVis(layerId("buildings-pop-3d", slug), isPop && is3d);
+      setVis(layerId("buildings-fill", slug), false);
+      setVis(layerId("buildings-line", slug), false);
+      setVis(layerId("buildings-3d", slug), !isPop);
+      setVis(layerId("buildings-pop", slug), false);
+      setVis(layerId("buildings-pop-3d", slug), isPop);
     }
-    map.easeTo({ pitch: is3d ? 55 : 0, duration: 600 });
+    map.easeTo({ pitch: 55, duration: 600 });
     const leg = document.getElementById("legend");
     leg.style.display = isPop ? "block" : "none";
     document.getElementById("legendBar").style.background =
