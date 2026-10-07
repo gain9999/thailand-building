@@ -1,0 +1,1773 @@
+[
+ {
+  "slug": "bangkok_metropolis",
+  "name": "Bangkok Metropolis",
+  "bbox": [
+   100.32,
+   13.4931,
+   100.939,
+   13.9542
+  ],
+  "buildings": 263880,
+  "with_height": 125083,
+  "pmtiles_mb": 15.5,
+  "pop_bbox": [
+   100.31999887871999,
+   13.492500282029988,
+   100.93916554290999,
+   13.955000280179988
+  ],
+  "pop_2027": 11078089,
+  "pop_tif": "bangkok_metropolis_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/bangkok_metropolis.pmtiles",
+  "pop_vmax": 504.19
+ },
+ {
+  "slug": "maha_sarakham",
+  "name": "Maha Sarakham",
+  "bbox": [
+   102.8456,
+   15.4047,
+   103.5064,
+   16.6421
+  ],
+  "buildings": 125541,
+  "with_height": 123342,
+  "pmtiles_mb": 8.2,
+  "pop_bbox": [
+   102.84499886862,
+   15.404166941049988,
+   103.50666553264,
+   16.642500269429988
+  ],
+  "pop_2027": 680720,
+  "pop_tif": "maha_sarakham_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/maha_sarakham.pmtiles",
+  "pop_vmax": 71.61
+ },
+ {
+  "slug": "tak",
+  "name": "Tak",
+  "bbox": [
+   97.7448,
+   15.1799,
+   99.4463,
+   17.867
+  ],
+  "buildings": 106088,
+  "with_height": 105749,
+  "pmtiles_mb": 6.9,
+  "pop_bbox": [
+   97.74416555568999,
+   15.179166941949987,
+   99.44666554887999,
+   17.867500264529987
+  ],
+  "pop_2027": 526611,
+  "pop_tif": "tak_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/tak.pmtiles",
+  "pop_vmax": 74.63
+ },
+ {
+  "slug": "chon_buri",
+  "name": "Chon Buri",
+  "bbox": [
+   100.6473,
+   12.5079,
+   101.7201,
+   13.5989
+  ],
+  "buildings": 99981,
+  "with_height": 45189,
+  "pmtiles_mb": 6.8,
+  "pop_bbox": [
+   100.64666554408,
+   12.507500285969988,
+   101.72083220645,
+   13.599166948269987
+  ],
+  "pop_2027": 2220484,
+  "pop_tif": "chon_buri_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chon_buri.pmtiles",
+  "pop_vmax": 126.17
+ },
+ {
+  "slug": "buri_ram",
+  "name": "Buri Ram",
+  "bbox": [
+   102.4335,
+   14.1295,
+   103.5067,
+   15.794
+  ],
+  "buildings": 99181,
+  "with_height": 2493,
+  "pmtiles_mb": 5.1,
+  "pop_bbox": [
+   102.43333220359999,
+   14.129166946149986,
+   103.50749886596999,
+   15.794166939489987
+  ],
+  "pop_2027": 1025219,
+  "pop_tif": "buri_ram_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/buri_ram.pmtiles",
+  "pop_vmax": 85.01
+ },
+ {
+  "slug": "phra_nakhon_si_ayutthaya",
+  "name": "Phra Nakhon Si Ayutthaya",
+  "bbox": [
+   100.2432,
+   14.1101,
+   100.8253,
+   14.673
+  ],
+  "buildings": 94601,
+  "with_height": 57839,
+  "pmtiles_mb": 5.5,
+  "pop_bbox": [
+   100.24249887903,
+   14.110000279559987,
+   100.82583221003,
+   14.673333610639986
+  ],
+  "pop_2027": 1033852,
+  "pop_tif": "phra_nakhon_si_ayutthaya_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phra_nakhon_si_ayutthaya.pmtiles",
+  "pop_vmax": 162.32
+ },
+ {
+  "slug": "nakhon_ratchasima",
+  "name": "Nakhon Ratchasima",
+  "bbox": [
+   101.183,
+   14.1194,
+   103.0142,
+   15.8063
+  ],
+  "buildings": 91455,
+  "with_height": 11276,
+  "pmtiles_mb": 5.3,
+  "pop_bbox": [
+   101.18249887526999,
+   14.119166946189987,
+   103.01499886793998,
+   15.806666939439987
+  ],
+  "pop_2027": 2461299,
+  "pop_tif": "nakhon_ratchasima_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nakhon_ratchasima.pmtiles",
+  "pop_vmax": 147.06
+ },
+ {
+  "slug": "chachoengsao",
+  "name": "Chachoengsao",
+  "bbox": [
+   100.8501,
+   13.1774,
+   101.9903,
+   13.9756
+  ],
+  "buildings": 86343,
+  "with_height": 7090,
+  "pmtiles_mb": 5.1,
+  "pop_bbox": [
+   100.84999887659998,
+   13.176666949959987,
+   101.99083220536998,
+   13.975833613429987
+  ],
+  "pop_2027": 767142,
+  "pop_tif": "chachoengsao_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chachoengsao.pmtiles",
+  "pop_vmax": 136.81
+ },
+ {
+  "slug": "si_sa_ket",
+  "name": "Si Sa Ket",
+  "bbox": [
+   103.9047,
+   14.3421,
+   104.9108,
+   15.567
+  ],
+  "buildings": 85673,
+  "with_height": 22379,
+  "pmtiles_mb": 4.7,
+  "pop_bbox": [
+   103.90416553104998,
+   14.341666945299988,
+   104.91083219368998,
+   15.567500273729987
+  ],
+  "pop_2027": 752024,
+  "pop_tif": "si_sa_ket_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/si_sa_ket.pmtiles",
+  "pop_vmax": 70.4
+ },
+ {
+  "slug": "pathum_thani",
+  "name": "Pathum Thani",
+  "bbox": [
+   100.3329,
+   13.9157,
+   100.9529,
+   14.2733
+  ],
+  "buildings": 85348,
+  "with_height": 24853,
+  "pmtiles_mb": 4.9,
+  "pop_bbox": [
+   100.33249887867,
+   13.915000280339987,
+   100.95333220952,
+   14.273333612239988
+  ],
+  "pop_2027": 2427359,
+  "pop_tif": "pathum_thani_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/pathum_thani.pmtiles",
+  "pop_vmax": 301.61
+ },
+ {
+  "slug": "phuket",
+  "name": "Phuket",
+  "bbox": [
+   98.2581,
+   7.4613,
+   98.6162,
+   8.2002
+  ],
+  "buildings": 77864,
+  "with_height": 77857,
+  "pmtiles_mb": 5.5,
+  "pop_bbox": [
+   98.25749888696998,
+   7.460833639489987,
+   98.61666555219999,
+   8.200833636529987
+  ],
+  "pop_2027": 992964,
+  "pop_tif": "phuket_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phuket.pmtiles",
+  "pop_vmax": 350.32
+ },
+ {
+  "slug": "prachin_buri",
+  "name": "Prachin Buri",
+  "bbox": [
+   101.1386,
+   13.5811,
+   102.1082,
+   14.4619
+  ],
+  "buildings": 75452,
+  "with_height": 2078,
+  "pmtiles_mb": 4.3,
+  "pop_bbox": [
+   101.13833220877999,
+   13.580833615009986,
+   102.10833220489998,
+   14.462500278149987
+  ],
+  "pop_2027": 695474,
+  "pop_tif": "prachin_buri_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/prachin_buri.pmtiles",
+  "pop_vmax": 136.9
+ },
+ {
+  "slug": "ubon_ratchathani",
+  "name": "Ubon Ratchathani",
+  "bbox": [
+   104.3748,
+   14.2097,
+   105.6391,
+   16.096
+  ],
+  "buildings": 68721,
+  "with_height": 61347,
+  "pmtiles_mb": 4.5,
+  "pop_bbox": [
+   104.37416552916999,
+   14.209166945829988,
+   105.63749885744998,
+   16.096666938279988
+  ],
+  "pop_2027": 1677290,
+  "pop_tif": "ubon_ratchathani_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/ubon_ratchathani.pmtiles",
+  "pop_vmax": 102.32
+ },
+ {
+  "slug": "rayong",
+  "name": "Rayong",
+  "bbox": [
+   100.9856,
+   12.5127,
+   101.832,
+   13.1631
+  ],
+  "buildings": 64298,
+  "with_height": 17501,
+  "pmtiles_mb": 4.1,
+  "pop_bbox": [
+   100.98499887605999,
+   12.512500285949988,
+   101.83249887266999,
+   13.163333616679989
+  ],
+  "pop_2027": 1224422,
+  "pop_tif": "rayong_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/rayong.pmtiles",
+  "pop_vmax": 150.85
+ },
+ {
+  "slug": "chiang_mai",
+  "name": "Chiang Mai",
+  "bbox": [
+   98.0098,
+   17.2727,
+   99.5739,
+   20.1442
+  ],
+  "buildings": 59048,
+  "with_height": 58909,
+  "pmtiles_mb": 4.8,
+  "pop_bbox": [
+   98.00916555462999,
+   17.272500266909987,
+   99.57416554836999,
+   20.145000255419987
+  ],
+  "pop_2027": 1877642,
+  "pop_tif": "chiang_mai_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chiang_mai.pmtiles",
+  "pop_vmax": 131.28
+ },
+ {
+  "slug": "nakhon_pathom",
+  "name": "Nakhon Pathom",
+  "bbox": [
+   99.8306,
+   13.6468,
+   100.3337,
+   14.2086
+  ],
+  "buildings": 54572,
+  "with_height": 7773,
+  "pmtiles_mb": 3.4,
+  "pop_bbox": [
+   99.82999888068,
+   13.646666948079988,
+   100.33416554533,
+   14.209166945829988
+  ],
+  "pop_2027": 1069074,
+  "pop_tif": "nakhon_pathom_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nakhon_pathom.pmtiles",
+  "pop_vmax": 180.97
+ },
+ {
+  "slug": "samut_prakan",
+  "name": "Samut Prakan",
+  "bbox": [
+   100.4453,
+   13.4783,
+   100.9638,
+   13.7178
+  ],
+  "buildings": 47530,
+  "with_height": 17983,
+  "pmtiles_mb": 3.1,
+  "pop_bbox": [
+   100.44499887821999,
+   13.477500282089986,
+   100.96416554281,
+   13.718333614459986
+  ],
+  "pop_2027": 3060656,
+  "pop_tif": "samut_prakan_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/samut_prakan.pmtiles",
+  "pop_vmax": 550.44
+ },
+ {
+  "slug": "trat",
+  "name": "Trat",
+  "bbox": [
+   102.2436,
+   11.5614,
+   102.9151,
+   12.7564
+  ],
+  "buildings": 42388,
+  "with_height": 27510,
+  "pmtiles_mb": 2.9,
+  "pop_bbox": [
+   102.24333220435999,
+   11.560833623089987,
+   102.91583220166999,
+   12.756666951639987
+  ],
+  "pop_2027": 273181,
+  "pop_tif": "trat_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/trat.pmtiles",
+  "pop_vmax": 201.78
+ },
+ {
+  "slug": "nonthaburi",
+  "name": "Nonthaburi",
+  "bbox": [
+   100.2652,
+   13.7883,
+   100.5687,
+   14.1389
+  ],
+  "buildings": 41350,
+  "with_height": 24702,
+  "pmtiles_mb": 2.5,
+  "pop_bbox": [
+   100.26499887893999,
+   13.787500280849988,
+   100.56916554438999,
+   14.139166946109988
+  ],
+  "pop_2027": 2008621,
+  "pop_tif": "nonthaburi_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nonthaburi.pmtiles",
+  "pop_vmax": 215.29
+ },
+ {
+  "slug": "chanthaburi",
+  "name": "Chanthaburi",
+  "bbox": [
+   101.6868,
+   12.2853,
+   102.5356,
+   13.3346
+  ],
+  "buildings": 37648,
+  "with_height": 2692,
+  "pmtiles_mb": 2.3,
+  "pop_bbox": [
+   101.68666553991999,
+   12.285000286859987,
+   102.53583220318998,
+   13.335000282659987
+  ],
+  "pop_2027": 459279,
+  "pop_tif": "chanthaburi_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chanthaburi.pmtiles",
+  "pop_vmax": 89.31
+ },
+ {
+  "slug": "suphan_buri",
+  "name": "Suphan Buri",
+  "bbox": [
+   99.2833,
+   14.0584,
+   100.2823,
+   15.0808
+  ],
+  "buildings": 37000,
+  "with_height": 641,
+  "pmtiles_mb": 2.3,
+  "pop_bbox": [
+   99.28249888286999,
+   14.058333613099988,
+   100.28249887886999,
+   15.080833609009987
+  ],
+  "pop_2027": 779520,
+  "pop_tif": "suphan_buri_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/suphan_buri.pmtiles",
+  "pop_vmax": 87.75
+ },
+ {
+  "slug": "ang_thong",
+  "name": "Ang Thong",
+  "bbox": [
+   100.1955,
+   14.4362,
+   100.5167,
+   14.8008
+  ],
+  "buildings": 34710,
+  "with_height": 579,
+  "pmtiles_mb": 2.0,
+  "pop_bbox": [
+   100.19499887922,
+   14.435833611589988,
+   100.51749887793,
+   14.800833610129988
+  ],
+  "pop_2027": 226151,
+  "pop_tif": "ang_thong_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/ang_thong.pmtiles",
+  "pop_vmax": 63.47
+ },
+ {
+  "slug": "samut_sakhon",
+  "name": "Samut Sakhon",
+  "bbox": [
+   100.0286,
+   13.4249,
+   100.4204,
+   13.7327
+  ],
+  "buildings": 31540,
+  "with_height": 7188,
+  "pmtiles_mb": 2.1,
+  "pop_bbox": [
+   100.02833221322,
+   13.424166948969987,
+   100.42083221165,
+   13.733333614399987
+  ],
+  "pop_2027": 1625413,
+  "pop_tif": "samut_sakhon_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/samut_sakhon.pmtiles",
+  "pop_vmax": 348.66
+ },
+ {
+  "slug": "ranong",
+  "name": "Ranong",
+  "bbox": [
+   98.326,
+   9.3047,
+   98.9651,
+   10.7854
+  ],
+  "buildings": 31025,
+  "with_height": 26870,
+  "pmtiles_mb": 2.3,
+  "pop_bbox": [
+   98.32583222003,
+   9.304166965449987,
+   98.96583221747,
+   10.785833626189987
+  ],
+  "pop_2027": 350395,
+  "pop_tif": "ranong_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/ranong.pmtiles",
+  "pop_vmax": 237.87
+ },
+ {
+  "slug": "prachuap_khiri_khan",
+  "name": "Prachuap Khiri Khan",
+  "bbox": [
+   99.1475,
+   10.955,
+   100.0322,
+   12.6525
+  ],
+  "buildings": 26045,
+  "with_height": 25926,
+  "pmtiles_mb": 2.1,
+  "pop_bbox": [
+   99.14749888341,
+   10.954166958849987,
+   100.03249887986999,
+   12.652500285389987
+  ],
+  "pop_2027": 470092,
+  "pop_tif": "prachuap_khiri_khan_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/prachuap_khiri_khan.pmtiles",
+  "pop_vmax": 93.75
+ },
+ {
+  "slug": "surat_thani",
+  "name": "Surat Thani",
+  "bbox": [
+   98.4427,
+   8.3007,
+   100.0906,
+   10.1264
+  ],
+  "buildings": 25376,
+  "with_height": 16486,
+  "pmtiles_mb": 1.8,
+  "pop_bbox": [
+   98.44249888622998,
+   8.300000302799987,
+   100.09083221296999,
+   10.126666962159987
+  ],
+  "pop_2027": 1090016,
+  "pop_tif": "surat_thani_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/surat_thani.pmtiles",
+  "pop_vmax": 111.26
+ },
+ {
+  "slug": "phangnga",
+  "name": "Phangnga",
+  "bbox": [
+   97.6308,
+   7.8879,
+   98.7067,
+   9.3516
+  ],
+  "buildings": 25090,
+  "with_height": 25090,
+  "pmtiles_mb": 1.9,
+  "pop_bbox": [
+   97.62999888947999,
+   7.887500304449987,
+   98.70749888517,
+   9.351666965259987
+  ],
+  "pop_2027": 262907,
+  "pop_tif": "phangnga_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phangnga.pmtiles",
+  "pop_vmax": 86.88
+ },
+ {
+  "slug": "lop_buri",
+  "name": "Lop Buri",
+  "bbox": [
+   100.4233,
+   14.6537,
+   101.4147,
+   15.5801
+  ],
+  "buildings": 23438,
+  "with_height": 1659,
+  "pmtiles_mb": 1.4,
+  "pop_bbox": [
+   100.42249887831,
+   14.653333610719987,
+   101.41499887434,
+   15.580833607009987
+  ],
+  "pop_2027": 747825,
+  "pop_tif": "lop_buri_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/lop_buri.pmtiles",
+  "pop_vmax": 94.19
+ },
+ {
+  "slug": "satun",
+  "name": "Satun",
+  "bbox": [
+   99.1542,
+   6.4051,
+   100.2207,
+   7.1301
+  ],
+  "buildings": 22142,
+  "with_height": 1413,
+  "pmtiles_mb": 1.2,
+  "pop_bbox": [
+   99.15416555005,
+   6.405000310379988,
+   100.22083221244999,
+   7.130833640809987
+  ],
+  "pop_2027": 280522,
+  "pop_tif": "satun_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/satun.pmtiles",
+  "pop_vmax": 112.76
+ },
+ {
+  "slug": "songkhla",
+  "name": "Songkhla",
+  "bbox": [
+   100.0546,
+   6.2887,
+   101.1123,
+   7.9368
+  ],
+  "buildings": 22015,
+  "with_height": 17326,
+  "pmtiles_mb": 1.7,
+  "pop_bbox": [
+   100.05416554645,
+   6.288333644179987,
+   101.11249887554999,
+   7.937500304249987
+  ],
+  "pop_2027": 1630632,
+  "pop_tif": "songkhla_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/songkhla.pmtiles",
+  "pop_vmax": 199.49
+ },
+ {
+  "slug": "narathiwat",
+  "name": "Narathiwat",
+  "bbox": [
+   101.3715,
+   5.7372,
+   102.093,
+   6.6353
+  ],
+  "buildings": 21869,
+  "with_height": 6443,
+  "pmtiles_mb": 1.4,
+  "pop_bbox": [
+   101.37083220784999,
+   5.736666979719988,
+   102.09333220495999,
+   6.635833642789988
+  ],
+  "pop_2027": 632246,
+  "pop_tif": "narathiwat_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/narathiwat.pmtiles",
+  "pop_vmax": 144.04
+ },
+ {
+  "slug": "saraburi",
+  "name": "Saraburi",
+  "bbox": [
+   100.5766,
+   14.2426,
+   101.4557,
+   15.0448
+  ],
+  "buildings": 19419,
+  "with_height": 1239,
+  "pmtiles_mb": 1.2,
+  "pop_bbox": [
+   100.57583221102999,
+   14.242500279029986,
+   101.45583220750999,
+   15.045000275819987
+  ],
+  "pop_2027": 830178,
+  "pop_tif": "saraburi_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/saraburi.pmtiles",
+  "pop_vmax": 121.22
+ },
+ {
+  "slug": "phitsanulok",
+  "name": "Phitsanulok",
+  "bbox": [
+   99.8577,
+   16.3072,
+   101.1114,
+   17.7416
+  ],
+  "buildings": 15477,
+  "with_height": 12432,
+  "pmtiles_mb": 1.1,
+  "pop_bbox": [
+   99.85749888056999,
+   16.30666693743999,
+   101.11166554222,
+   17.74166693169999
+  ],
+  "pop_2027": 975379,
+  "pop_tif": "phitsanulok_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phitsanulok.pmtiles",
+  "pop_vmax": 131.63
+ },
+ {
+  "slug": "sing_buri",
+  "name": "Sing Buri",
+  "bbox": [
+   100.1828,
+   14.714,
+   100.4897,
+   15.1097
+  ],
+  "buildings": 14401,
+  "with_height": 3189,
+  "pmtiles_mb": 0.9,
+  "pop_bbox": [
+   100.18249887926999,
+   14.713333610479987,
+   100.48999887803998,
+   15.110000275559987
+  ],
+  "pop_2027": 161601,
+  "pop_tif": "sing_buri_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/sing_buri.pmtiles",
+  "pop_vmax": 65.33
+ },
+ {
+  "slug": "phetchaburi",
+  "name": "Phetchaburi",
+  "bbox": [
+   99.0998,
+   12.54,
+   100.1039,
+   13.3432
+  ],
+  "buildings": 12169,
+  "with_height": 3874,
+  "pmtiles_mb": 0.8,
+  "pop_bbox": [
+   99.09916555026999,
+   12.539166952509989,
+   100.10416554624999,
+   13.343333615959988
+  ],
+  "pop_2027": 475148,
+  "pop_tif": "phetchaburi_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phetchaburi.pmtiles",
+  "pop_vmax": 83.25
+ },
+ {
+  "slug": "surin",
+  "name": "Surin",
+  "bbox": [
+   103.0923,
+   14.329,
+   104.0936,
+   15.4813
+  ],
+  "buildings": 12009,
+  "with_height": 287,
+  "pmtiles_mb": 0.6,
+  "pop_bbox": [
+   103.09166553429999,
+   14.328333612019987,
+   104.09416553028998,
+   15.481666940739988
+  ],
+  "pop_2027": 895674,
+  "pop_tif": "surin_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/surin.pmtiles",
+  "pop_vmax": 91.0
+ },
+ {
+  "slug": "ratchaburi",
+  "name": "Ratchaburi",
+  "bbox": [
+   99.1672,
+   13.148,
+   100.0703,
+   13.9483
+  ],
+  "buildings": 11318,
+  "with_height": 4414,
+  "pmtiles_mb": 0.8,
+  "pop_bbox": [
+   99.16666554999999,
+   13.147500283409986,
+   100.07083221305,
+   13.948333613539987
+  ],
+  "pop_2027": 750339,
+  "pop_tif": "ratchaburi_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/ratchaburi.pmtiles",
+  "pop_vmax": 92.33
+ },
+ {
+  "slug": "trang",
+  "name": "Trang",
+  "bbox": [
+   99.0534,
+   6.7939,
+   99.9982,
+   8.0134
+  ],
+  "buildings": 11312,
+  "with_height": 1872,
+  "pmtiles_mb": 0.7,
+  "pop_bbox": [
+   99.05333221711999,
+   6.793333642159986,
+   99.99833221333999,
+   8.014166970609987
+  ],
+  "pop_2027": 561625,
+  "pop_tif": "trang_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/trang.pmtiles",
+  "pop_vmax": 133.92
+ },
+ {
+  "slug": "chiang_rai",
+  "name": "Chiang Rai",
+  "bbox": [
+   99.2602,
+   18.9976,
+   100.5798,
+   20.4631
+  ],
+  "buildings": 10762,
+  "with_height": 10683,
+  "pmtiles_mb": 1.0,
+  "pop_bbox": [
+   99.25999888295999,
+   18.997500260009986,
+   100.57999887768,
+   20.463333587479987
+  ],
+  "pop_2027": 1128318,
+  "pop_tif": "chiang_rai_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chiang_rai.pmtiles",
+  "pop_vmax": 95.15
+ },
+ {
+  "slug": "samut_songkhram",
+  "name": "Samut Songkhram",
+  "bbox": [
+   99.8534,
+   13.2449,
+   100.0796,
+   13.5141
+  ],
+  "buildings": 9744,
+  "with_height": 6314,
+  "pmtiles_mb": 0.7,
+  "pop_bbox": [
+   99.85333221391998,
+   13.244166949689987,
+   100.07999887967999,
+   13.514166948609986
+  ],
+  "pop_2027": 159639,
+  "pop_tif": "samut_songkhram_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/samut_songkhram.pmtiles",
+  "pop_vmax": 76.18
+ },
+ {
+  "slug": "sa_kaeo",
+  "name": "Sa Kaeo",
+  "bbox": [
+   101.8617,
+   13.2357,
+   102.941,
+   14.1945
+  ],
+  "buildings": 7987,
+  "with_height": 7725,
+  "pmtiles_mb": 0.6,
+  "pop_bbox": [
+   101.86166553921998,
+   13.235000283059986,
+   102.94166553489998,
+   14.195000279219986
+  ],
+  "pop_2027": 584992,
+  "pop_tif": "sa_kaeo_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/sa_kaeo.pmtiles",
+  "pop_vmax": 110.35
+ },
+ {
+  "slug": "nakhon_si_thammarat",
+  "name": "Nakhon Si Thammarat",
+  "bbox": [
+   99.2345,
+   7.8362,
+   100.7454,
+   9.3227
+  ],
+  "buildings": 7663,
+  "with_height": 7663,
+  "pmtiles_mb": 0.8,
+  "pop_bbox": [
+   99.23416554973,
+   7.835833637989988,
+   100.74583221034999,
+   9.323333632039988
+  ],
+  "pop_2027": 1312288,
+  "pop_tif": "nakhon_si_thammarat_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nakhon_si_thammarat.pmtiles",
+  "pop_vmax": 124.62
+ },
+ {
+  "slug": "krabi",
+  "name": "Krabi",
+  "bbox": [
+   98.6114,
+   7.3998,
+   99.4163,
+   8.6744
+  ],
+  "buildings": 7394,
+  "with_height": 7394,
+  "pmtiles_mb": 0.6,
+  "pop_bbox": [
+   98.61083221889,
+   7.3991669730699865,
+   99.416665549,
+   8.675000301299987
+  ],
+  "pop_2027": 360078,
+  "pop_tif": "krabi_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/krabi.pmtiles",
+  "pop_vmax": 75.0
+ },
+ {
+  "slug": "amnat_charoen",
+  "name": "Amnat Charoen",
+  "bbox": [
+   104.4211,
+   15.5354,
+   105.0628,
+   16.2824
+  ],
+  "buildings": 7359,
+  "with_height": 7359,
+  "pmtiles_mb": 0.5,
+  "pop_bbox": [
+   104.42083219565,
+   15.535000273859989,
+   105.06333219307999,
+   16.28250027086999
+  ],
+  "pop_2027": 211814,
+  "pop_tif": "amnat_charoen_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/amnat_charoen.pmtiles",
+  "pop_vmax": 50.33
+ },
+ {
+  "slug": "chumphon",
+  "name": "Chumphon",
+  "bbox": [
+   98.6268,
+   9.6011,
+   99.5197,
+   11.0328
+  ],
+  "buildings": 6952,
+  "with_height": 3066,
+  "pmtiles_mb": 0.5,
+  "pop_bbox": [
+   98.62666555215999,
+   9.600833630929987,
+   99.51999888191999,
+   11.033333625199987
+  ],
+  "pop_2027": 457838,
+  "pop_tif": "chumphon_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chumphon.pmtiles",
+  "pop_vmax": 88.29
+ },
+ {
+  "slug": "lampang",
+  "name": "Lampang",
+  "bbox": [
+   98.881,
+   17.2055,
+   100.1273,
+   19.416
+  ],
+  "buildings": 6483,
+  "with_height": 6482,
+  "pmtiles_mb": 0.6,
+  "pop_bbox": [
+   98.88083221781,
+   17.205000267179987,
+   100.12749887948999,
+   19.416666924999987
+  ],
+  "pop_2027": 659748,
+  "pop_tif": "lampang_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/lampang.pmtiles",
+  "pop_vmax": 88.92
+ },
+ {
+  "slug": "khon_kaen",
+  "name": "Khon Kaen",
+  "bbox": [
+   101.7497,
+   15.6305,
+   103.1881,
+   17.0874
+  ],
+  "buildings": 3410,
+  "with_height": 3410,
+  "pmtiles_mb": 0.4,
+  "pop_bbox": [
+   101.74916553966999,
+   15.630000273479986,
+   103.18833220057999,
+   17.087500267649986
+  ],
+  "pop_2027": 1692620,
+  "pop_tif": "khon_kaen_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/khon_kaen.pmtiles",
+  "pop_vmax": 162.16
+ },
+ {
+  "slug": "lamphun",
+  "name": "Lamphun",
+  "bbox": [
+   98.6667,
+   17.4227,
+   99.3225,
+   18.7081
+  ],
+  "buildings": 2938,
+  "with_height": 2938,
+  "pmtiles_mb": 0.3,
+  "pop_bbox": [
+   98.66666555199998,
+   17.422500266309985,
+   99.32333221603999,
+   18.708333594499987
+  ],
+  "pop_2027": 392489,
+  "pop_tif": "lamphun_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/lamphun.pmtiles",
+  "pop_vmax": 91.48
+ },
+ {
+  "slug": "nakhon_sawan",
+  "name": "Nakhon Sawan",
+  "bbox": [
+   99.0863,
+   15.0559,
+   100.8501,
+   16.1947
+  ],
+  "buildings": 2580,
+  "with_height": 2580,
+  "pmtiles_mb": 0.2,
+  "pop_bbox": [
+   99.08583221698998,
+   15.055833609109989,
+   100.85083220992999,
+   16.19500027121999
+  ],
+  "pop_2027": 860366,
+  "pop_tif": "nakhon_sawan_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nakhon_sawan.pmtiles",
+  "pop_vmax": 120.55
+ },
+ {
+  "slug": "kamphaeng_phet",
+  "name": "Kamphaeng Phet",
+  "bbox": [
+   98.9873,
+   15.8566,
+   100.0568,
+   16.9074
+  ],
+  "buildings": 2193,
+  "with_height": 2193,
+  "pmtiles_mb": 0.3,
+  "pop_bbox": [
+   98.98666555071999,
+   15.855833605909986,
+   100.05749887977,
+   16.907500268369986
+  ],
+  "pop_2027": 875382,
+  "pop_tif": "kamphaeng_phet_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/kamphaeng_phet.pmtiles",
+  "pop_vmax": 142.81
+ },
+ {
+  "slug": "mae_hong_son",
+  "name": "Mae Hong Son",
+  "bbox": [
+   97.3452,
+   17.6355,
+   98.6528,
+   19.8113
+  ],
+  "buildings": 2076,
+  "with_height": 1977,
+  "pmtiles_mb": 0.2,
+  "pop_bbox": [
+   97.34499889061999,
+   17.63500026545999,
+   98.65333221872,
+   19.81166692341999
+  ],
+  "pop_2027": 193910,
+  "pop_tif": "mae_hong_son_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/mae_hong_son.pmtiles",
+  "pop_vmax": 87.06
+ },
+ {
+  "slug": "kanchanaburi",
+  "name": "Kanchanaburi",
+  "bbox": [
+   98.1838,
+   13.7249,
+   99.8779,
+   15.6595
+  ],
+  "buildings": 2035,
+  "with_height": 2024,
+  "pmtiles_mb": 0.3,
+  "pop_bbox": [
+   98.1833322206,
+   13.724166947769987,
+   99.87833221381999,
+   15.660000273359987
+  ],
+  "pop_2027": 806155,
+  "pop_tif": "kanchanaburi_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/kanchanaburi.pmtiles",
+  "pop_vmax": 115.47
+ },
+ {
+  "slug": "phetchabun",
+  "name": "Phetchabun",
+  "bbox": [
+   100.6375,
+   15.3186,
+   101.7895,
+   17.1309
+  ],
+  "buildings": 1985,
+  "with_height": 1985,
+  "pmtiles_mb": 0.2,
+  "pop_bbox": [
+   100.63749887744999,
+   15.318333608059985,
+   101.78999887283999,
+   17.131666934139986
+  ],
+  "pop_2027": 854484,
+  "pop_tif": "phetchabun_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phetchabun.pmtiles",
+  "pop_vmax": 98.93
+ },
+ {
+  "slug": "sukhothai",
+  "name": "Sukhothai",
+  "bbox": [
+   99.3112,
+   16.6812,
+   100.1128,
+   17.8198
+  ],
+  "buildings": 1822,
+  "with_height": 1708,
+  "pmtiles_mb": 0.2,
+  "pop_bbox": [
+   99.31083221608999,
+   16.680833602609987,
+   100.11333221288,
+   17.820000264719987
+  ],
+  "pop_2027": 620958,
+  "pop_tif": "sukhothai_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/sukhothai.pmtiles",
+  "pop_vmax": 93.41
+ },
+ {
+  "slug": "phrae",
+  "name": "Phrae",
+  "bbox": [
+   99.3682,
+   17.7042,
+   100.5531,
+   18.8324
+  ],
+  "buildings": 1467,
+  "with_height": 1467,
+  "pmtiles_mb": 0.2,
+  "pop_bbox": [
+   99.36749888252999,
+   17.70416693184999,
+   100.55333221111998,
+   18.83250026066999
+  ],
+  "pop_2027": 348734,
+  "pop_tif": "phrae_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phrae.pmtiles",
+  "pop_vmax": 80.42
+ },
+ {
+  "slug": "nan",
+  "name": "Nan",
+  "bbox": [
+   100.3381,
+   18.0115,
+   101.3594,
+   19.6318
+  ],
+  "buildings": 1349,
+  "with_height": 1349,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   100.33749887865,
+   18.010833597289988,
+   101.35999887455999,
+   19.63250025746999
+  ],
+  "pop_2027": 419013,
+  "pop_tif": "nan_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nan.pmtiles",
+  "pop_vmax": 84.09
+ },
+ {
+  "slug": "roi_et",
+  "name": "Roi Et",
+  "bbox": [
+   103.2738,
+   15.4036,
+   104.3534,
+   16.4707
+  ],
+  "buildings": 1102,
+  "with_height": 1102,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   103.27333220023999,
+   15.403333607719986,
+   104.35416552925,
+   16.470833603449986
+  ],
+  "pop_2027": 880613,
+  "pop_tif": "roi_et_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/roi_et.pmtiles",
+  "pop_vmax": 81.88
+ },
+ {
+  "slug": "nakhon_nayok",
+  "name": "Nakhon Nayok",
+  "bbox": [
+   100.9143,
+   13.9587,
+   101.5062,
+   14.5112
+  ],
+  "buildings": 1063,
+  "with_height": 914,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   100.91416554300999,
+   13.958333613499988,
+   101.50666554063999,
+   14.511666944619988
+  ],
+  "pop_2027": 237364,
+  "pop_tif": "nakhon_nayok_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nakhon_nayok.pmtiles",
+  "pop_vmax": 89.36
+ },
+ {
+  "slug": "phayao",
+  "name": "Phayao",
+  "bbox": [
+   99.6847,
+   18.8035,
+   100.6489,
+   19.7339
+  ],
+  "buildings": 1047,
+  "with_height": 1047,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   99.68416554793,
+   18.803333594119987,
+   100.64916554406999,
+   19.734166923729987
+  ],
+  "pop_2027": 326396,
+  "pop_tif": "phayao_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phayao.pmtiles",
+  "pop_vmax": 68.98
+ },
+ {
+  "slug": "uthai_thani",
+  "name": "Uthai Thani",
+  "bbox": [
+   98.9846,
+   14.9385,
+   100.1063,
+   15.7954
+  ],
+  "buildings": 676,
+  "with_height": 676,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   98.98416555072998,
+   14.938333609579987,
+   100.10666554623998,
+   15.795833606149987
+  ],
+  "pop_2027": 271802,
+  "pop_tif": "uthai_thani_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/uthai_thani.pmtiles",
+  "pop_vmax": 73.98
+ },
+ {
+  "slug": "loei",
+  "name": "Loei",
+  "bbox": [
+   100.8351,
+   16.7507,
+   102.1557,
+   18.2178
+  ],
+  "buildings": 580,
+  "with_height": 574,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   100.83499887666,
+   16.75000026899999,
+   102.15583220471,
+   18.21833359645999
+  ],
+  "pop_2027": 454748,
+  "pop_tif": "loei_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/loei.pmtiles",
+  "pop_vmax": 75.67
+ },
+ {
+  "slug": "chaiyaphum",
+  "name": "Chaiyaphum",
+  "bbox": [
+   101.3182,
+   15.3141,
+   102.4608,
+   16.7297
+  ],
+  "buildings": 577,
+  "with_height": 577,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   101.31749887472999,
+   15.313333608079986,
+   102.46083220348999,
+   16.730000269079987
+  ],
+  "pop_2027": 794401,
+  "pop_tif": "chaiyaphum_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chaiyaphum.pmtiles",
+  "pop_vmax": 94.77
+ },
+ {
+  "slug": "nakhon_phanom",
+  "name": "Nakhon Phanom",
+  "bbox": [
+   103.9846,
+   16.7847,
+   104.8066,
+   18.025
+  ],
+  "buildings": 531,
+  "with_height": 531,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   103.98416553073,
+   16.78416693552999,
+   104.80666552743999,
+   18.025000263899987
+  ],
+  "pop_2027": 464665,
+  "pop_tif": "nakhon_phanom_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nakhon_phanom.pmtiles",
+  "pop_vmax": 75.89
+ },
+ {
+  "slug": "bueng_kan",
+  "name": "Bueng Kan",
+  "bbox": [
+   103.2471,
+   17.7671,
+   104.1926,
+   18.4467
+  ],
+  "buildings": 493,
+  "with_height": 493,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   103.24666553367999,
+   17.76666693159999,
+   104.19333219656,
+   18.44750026220999
+  ],
+  "pop_2027": 315574,
+  "pop_tif": "bueng_kan_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/bueng_kan.pmtiles",
+  "pop_vmax": 70.63
+ },
+ {
+  "slug": "sakon_nakhon",
+  "name": "Sakon Nakhon",
+  "bbox": [
+   103.2535,
+   16.7707,
+   104.4378,
+   18.0881
+  ],
+  "buildings": 431,
+  "with_height": 431,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   103.25333220031999,
+   16.770000268919986,
+   104.43833219557999,
+   18.088333596979986
+  ],
+  "pop_2027": 796550,
+  "pop_tif": "sakon_nakhon_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/sakon_nakhon.pmtiles",
+  "pop_vmax": 84.03
+ },
+ {
+  "slug": "phatthalung",
+  "name": "Phatthalung",
+  "bbox": [
+   99.7324,
+   7.0903,
+   100.4285,
+   7.8936
+  ],
+  "buildings": 371,
+  "with_height": 347,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   99.73166554774,
+   7.090000307639987,
+   100.42916554495,
+   7.894166971089987
+  ],
+  "pop_2027": 436821,
+  "pop_tif": "phatthalung_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phatthalung.pmtiles",
+  "pop_vmax": 85.66
+ },
+ {
+  "slug": "nong_khai",
+  "name": "Nong Khai",
+  "bbox": [
+   102.058,
+   17.5909,
+   103.416,
+   18.3022
+  ],
+  "buildings": 369,
+  "with_height": 363,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   102.05749887177,
+   17.590833598969986,
+   103.416665533,
+   18.302500262789987
+  ],
+  "pop_2027": 386953,
+  "pop_tif": "nong_khai_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nong_khai.pmtiles",
+  "pop_vmax": 78.52
+ },
+ {
+  "slug": "udon_thani",
+  "name": "Udon Thani",
+  "bbox": [
+   102.0182,
+   16.8003,
+   103.6694,
+   18.0829
+  ],
+  "buildings": 368,
+  "with_height": 368,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   102.01749887192999,
+   16.800000268799987,
+   103.66999886531998,
+   18.08333359699999
+  ],
+  "pop_2027": 1057898,
+  "pop_tif": "udon_thani_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/udon_thani.pmtiles",
+  "pop_vmax": 82.7
+ },
+ {
+  "slug": "phichit",
+  "name": "Phichit",
+  "bbox": [
+   99.9845,
+   15.911,
+   100.7716,
+   16.6457
+  ],
+  "buildings": 333,
+  "with_height": 333,
+  "pmtiles_mb": 0.1,
+  "pop_bbox": [
+   99.98416554673,
+   15.910833605689989,
+   100.77166554358,
+   16.64583360274999
+  ],
+  "pop_2027": 495785,
+  "pop_tif": "phichit_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/phichit.pmtiles",
+  "pop_vmax": 102.02
+ },
+ {
+  "slug": "kalasin",
+  "name": "Kalasin",
+  "bbox": [
+   103.1002,
+   16.18,
+   104.2431,
+   17.0997
+  ],
+  "buildings": 310,
+  "with_height": 310,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   103.0999988676,
+   16.179166937949987,
+   104.24333219635999,
+   17.100000267599988
+  ],
+  "pop_2027": 689180,
+  "pop_tif": "kalasin_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/kalasin.pmtiles",
+  "pop_vmax": 82.23
+ },
+ {
+  "slug": "yala",
+  "name": "Yala",
+  "bbox": [
+   100.8352,
+   5.6162,
+   101.6091,
+   6.6828
+  ],
+  "buildings": 294,
+  "with_height": 293,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   100.83499887666,
+   5.615833646869987,
+   101.60916554023,
+   6.683333642599987
+  ],
+  "pop_2027": 424717,
+  "pop_tif": "yala_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/yala.pmtiles",
+  "pop_vmax": 123.5
+ },
+ {
+  "slug": "chai_nat",
+  "name": "Chai Nat",
+  "bbox": [
+   99.7169,
+   14.9021,
+   100.3547,
+   15.4166
+  ],
+  "buildings": 217,
+  "with_height": 191,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   99.71666554779999,
+   14.901666943059988,
+   100.35499887857999,
+   15.416666940999988
+  ],
+  "pop_2027": 244161,
+  "pop_tif": "chai_nat_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/chai_nat.pmtiles",
+  "pop_vmax": 74.04
+ },
+ {
+  "slug": "mukdahan",
+  "name": "Mukdahan",
+  "bbox": [
+   104.0732,
+   16.1832,
+   104.9807,
+   16.9048
+  ],
+  "buildings": 197,
+  "with_height": 195,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   104.07249886371,
+   16.182500271269987,
+   104.98083219341,
+   16.905000268379986
+  ],
+  "pop_2027": 379432,
+  "pop_tif": "mukdahan_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/mukdahan.pmtiles",
+  "pop_vmax": 109.09
+ },
+ {
+  "slug": "nong_bua_lam_phu",
+  "name": "Nong Bua Lam Phu",
+  "bbox": [
+   101.9836,
+   16.7661,
+   102.6832,
+   17.6767
+  ],
+  "buildings": 121,
+  "with_height": 121,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   101.98333220539999,
+   16.765833602269986,
+   102.68333220259998,
+   17.677500265289986
+  ],
+  "pop_2027": 454069,
+  "pop_tif": "nong_bua_lam_phu_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/nong_bua_lam_phu.pmtiles",
+  "pop_vmax": 72.07
+ },
+ {
+  "slug": "uttaradit",
+  "name": "Uttaradit",
+  "bbox": [
+   99.8984,
+   17.1625,
+   101.193,
+   18.3794
+  ],
+  "buildings": 81,
+  "with_height": 75,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   99.89833221373999,
+   17.16166693401999,
+   101.19333220856,
+   18.38000026247999
+  ],
+  "pop_2027": 386966,
+  "pop_tif": "uttaradit_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/uttaradit.pmtiles",
+  "pop_vmax": 94.06
+ },
+ {
+  "slug": "pattani",
+  "name": "Pattani",
+  "bbox": [
+   101.0187,
+   6.5498,
+   101.7252,
+   6.9517
+  ],
+  "buildings": 73,
+  "with_height": 73,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   101.01833220926,
+   6.549166976469988,
+   101.72583220643,
+   6.952500308189988
+  ],
+  "pop_2027": 579472,
+  "pop_tif": "pattani_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/pattani.pmtiles",
+  "pop_vmax": 159.1
+ },
+ {
+  "slug": "yasothon",
+  "name": "Yasothon",
+  "bbox": [
+   103.9994,
+   15.2883,
+   104.8273,
+   16.3477
+  ],
+  "buildings": 32,
+  "with_height": 32,
+  "pmtiles_mb": 0.0,
+  "pop_bbox": [
+   103.99916553066998,
+   15.287500274849988,
+   104.82749886068999,
+   16.348333603939988
+  ],
+  "pop_2027": 400162,
+  "pop_tif": "yasothon_pop2027.tif",
+  "pmtiles": "GlobalBuildingAtlas/yasothon.pmtiles",
+  "pop_vmax": 103.9
+ }
+]
