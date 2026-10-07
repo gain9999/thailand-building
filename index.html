@@ -142,6 +142,12 @@
   const searchBox = document.getElementById("searchBox");
   const searchResults = document.getElementById("searchResults");
   let searchTimer = null;
+  let lastItems = [];
+  function flyToItem(it) {
+    map.flyTo({ center: [+it.lon, +it.lat], zoom: 17, duration: 1200 });
+    searchResults.style.display = "none";
+    searchBox.value = it.display_name.split(",")[0];
+  }
   searchBox.addEventListener("input", () => {
     clearTimeout(searchTimer);
     const q = searchBox.value.trim();
@@ -151,23 +157,25 @@
         const url = "https://nominatim.openstreetmap.org/search?format=json&limit=6&countrycodes=th&q=" + encodeURIComponent(q);
         const res = await fetch(url, { headers: { "Accept": "application/json" } });
         const items = await res.json();
+        lastItems = items;
         if (!items.length) {
           searchResults.innerHTML = "<div>No results</div>";
         } else {
           searchResults.innerHTML = items.map((it, i) =>
             `<div data-i="${i}">${it.display_name.split(",").slice(0, 3).join(",")}</div>`).join("");
           searchResults.querySelectorAll("div[data-i]").forEach(el => {
-            el.addEventListener("click", () => {
-              const it = items[+el.dataset.i];
-              map.flyTo({ center: [+it.lon, +it.lat], zoom: 14, duration: 1200 });
-              searchResults.style.display = "none";
-              searchBox.value = it.display_name.split(",")[0];
-            });
+            el.addEventListener("click", () => flyToItem(items[+el.dataset.i]));
           });
         }
         searchResults.style.display = "block";
       } catch (e) { /* ignore */ }
     }, 400);
+  });
+  searchBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && lastItems.length > 0) {
+      e.preventDefault();
+      flyToItem(lastItems[0]);
+    }
   });
   // hide results when clicking elsewhere
   document.addEventListener("click", (e) => {
