@@ -10,7 +10,7 @@
   ],
   "buildings": 263880,
   "with_height": 125083,
-  "pmtiles_mb": 18.5,
+  "pmtiles_mb": 19.6,
   "pop_bbox": [
    100.31999887871999,
    13.492500282029988,
@@ -33,7 +33,7 @@
   ],
   "buildings": 125541,
   "with_height": 123342,
-  "pmtiles_mb": 9.8,
+  "pmtiles_mb": 10.8,
   "pop_bbox": [
    102.84499886862,
    15.404166941049988,
@@ -56,7 +56,7 @@
   ],
   "buildings": 106088,
   "with_height": 105749,
-  "pmtiles_mb": 8.2,
+  "pmtiles_mb": 9.1,
   "pop_bbox": [
    97.74416555568999,
    15.179166941949987,
@@ -79,7 +79,7 @@
   ],
   "buildings": 99981,
   "with_height": 45189,
-  "pmtiles_mb": 8.6,
+  "pmtiles_mb": 9.4,
   "pop_bbox": [
    100.64666554408,
    12.507500285969988,
@@ -102,7 +102,7 @@
   ],
   "buildings": 99181,
   "with_height": 2493,
-  "pmtiles_mb": 6.8,
+  "pmtiles_mb": 7.8,
   "pop_bbox": [
    102.43333220359999,
    14.129166946149986,
@@ -125,7 +125,7 @@
   ],
   "buildings": 94601,
   "with_height": 57839,
-  "pmtiles_mb": 6.8,
+  "pmtiles_mb": 7.3,
   "pop_bbox": [
    100.24249887903,
    14.110000279559987,
@@ -148,7 +148,7 @@
   ],
   "buildings": 91455,
   "with_height": 11276,
-  "pmtiles_mb": 7.2,
+  "pmtiles_mb": 8.1,
   "pop_bbox": [
    101.18249887526999,
    14.119166946189987,
@@ -171,7 +171,7 @@
   ],
   "buildings": 86343,
   "with_height": 7090,
-  "pmtiles_mb": 6.6,
+  "pmtiles_mb": 7.2,
   "pop_bbox": [
    100.84999887659998,
    13.176666949959987,
@@ -194,7 +194,7 @@
   ],
   "buildings": 85673,
   "with_height": 22379,
-  "pmtiles_mb": 6.1,
+  "pmtiles_mb": 7.0,
   "pop_bbox": [
    103.90416553104998,
    14.341666945299988,
@@ -217,7 +217,7 @@
   ],
   "buildings": 85348,
   "with_height": 24853,
-  "pmtiles_mb": 6.3,
+  "pmtiles_mb": 6.9,
   "pop_bbox": [
    100.33249887867,
    13.915000280339987,
@@ -240,7 +240,7 @@
   ],
   "buildings": 77864,
   "with_height": 77857,
-  "pmtiles_mb": 6.7,
+  "pmtiles_mb": 7.2,
   "pop_bbox": [
    98.25749888696998,
    7.460833639489987,
@@ -263,7 +263,7 @@
   ],
   "buildings": 75452,
   "with_height": 2078,
-  "pmtiles_mb": 5.6,
+  "pmtiles_mb": 6.1,
   "pop_bbox": [
    101.13833220877999,
    13.580833615009986,
@@ -286,7 +286,7 @@
   ],
   "buildings": 68721,
   "with_height": 61347,
-  "pmtiles_mb": 5.8,
+  "pmtiles_mb": 6.7,
   "pop_bbox": [
    104.37416552916999,
    14.209166945829988,
@@ -309,7 +309,7 @@
   ],
   "buildings": 64298,
   "with_height": 17501,
-  "pmtiles_mb": 5.3,
+  "pmtiles_mb": 5.9,
   "pop_bbox": [
    100.98499887605999,
    12.512500285949988,
@@ -332,7 +332,7 @@
   ],
   "buildings": 59048,
   "with_height": 58909,
-  "pmtiles_mb": 5.9,
+  "pmtiles_mb": 6.6,
   "pop_bbox": [
    98.00916555462999,
    17.272500266909987,
@@ -355,7 +355,7 @@
   ],
   "buildings": 54572,
   "with_height": 7773,
-  "pmtiles_mb": 4.3,
+  "pmtiles_mb": 4.8,
   "pop_bbox": [
    99.82999888068,
    13.646666948079988,
@@ -378,7 +378,7 @@
   ],
   "buildings": 47530,
   "with_height": 17983,
-  "pmtiles_mb": 4.0,
+  "pmtiles_mb": 4.5,
   "pop_bbox": [
    100.44499887821999,
    13.477500282089986,
@@ -401,7 +401,7 @@
   ],
   "buildings": 42388,
   "with_height": 27510,
-  "pmtiles_mb": 3.6,
+  "pmtiles_mb": 3.9,
   "pop_bbox": [
    102.24333220435999,
    11.560833623089987,
@@ -424,7 +424,7 @@
   ],
   "buildings": 41350,
   "with_height": 24702,
-  "pmtiles_mb": 3.2,
+  "pmtiles_mb": 3.6,
   "pop_bbox": [
    100.26499887893999,
    13.787500280849988,
@@ -447,7 +447,7 @@
   ],
   "buildings": 37648,
   "with_height": 2692,
-  "pmtiles_mb": 3.1,
+  "pmtiles_mb": 3.5,
   "pop_bbox": [
    101.68666553991999,
    12.285000286859987,
@@ -470,7 +470,7 @@
   ],
   "buildings": 37000,
   "with_height": 641,
-  "pmtiles_mb": 3.1,
+  "pmtiles_mb": 3.5,
   "pop_bbox": [
    99.28249888286999,
    14.058333613099988,
@@ -493,7 +493,7 @@
   ],
   "buildings": 34710,
   "with_height": 579,
-  "pmtiles_mb": 2.5,
+  "pmtiles_mb": 2.7,
   "pop_bbox": [
    100.19499887922,
    14.435833611589988,
@@ -516,7 +516,7 @@
   ],
   "buildings": 31540,
   "with_height": 7188,
-  "pmtiles_mb": 2.8,
+  "pmtiles_mb": 3.1,
   "pop_bbox": [
    100.02833221322,
    13.424166948969987,
@@ -539,7 +539,7 @@
   ],
   "buildings": 31025,
   "with_height": 26870,
-  "pmtiles_mb": 2.8,
+  "pmtiles_mb": 3.1,
   "pop_bbox": [
    98.32583222003,
    9.304166965449987,
@@ -562,7 +562,7 @@
   ],
   "buildings": 26045,
   "with_height": 25926,
-  "pmtiles_mb": 2.6,
+  "pmtiles_mb": 3.0,
   "pop_bbox": [
    99.14749888341,
    10.954166958849987,
@@ -585,7 +585,7 @@
   ],
   "buildings": 25376,
   "with_height": 16486,
-  "pmtiles_mb": 2.4,
+  "pmtiles_mb": 2.8,
   "pop_bbox": [
    98.44249888622998,
    8.300000302799987,
@@ -608,7 +608,7 @@
   ],
   "buildings": 25090,
   "with_height": 25090,
-  "pmtiles_mb": 2.3,
+  "pmtiles_mb": 2.5,
   "pop_bbox": [
    97.62999888947999,
    7.887500304449987,
@@ -631,7 +631,7 @@
   ],
   "buildings": 23438,
   "with_height": 1659,
-  "pmtiles_mb": 1.9,
+  "pmtiles_mb": 2.2,
   "pop_bbox": [
    100.42249887831,
    14.653333610719987,
@@ -654,7 +654,7 @@
   ],
   "buildings": 22142,
   "with_height": 1413,
-  "pmtiles_mb": 1.7,
+  "pmtiles_mb": 1.9,
   "pop_bbox": [
    99.15416555005,
    6.405000310379988,
@@ -677,7 +677,7 @@
   ],
   "buildings": 22015,
   "with_height": 17326,
-  "pmtiles_mb": 2.2,
+  "pmtiles_mb": 2.5,
   "pop_bbox": [
    100.05416554645,
    6.288333644179987,
@@ -700,7 +700,7 @@
   ],
   "buildings": 21869,
   "with_height": 6443,
-  "pmtiles_mb": 1.9,
+  "pmtiles_mb": 2.2,
   "pop_bbox": [
    101.37083220784999,
    5.736666979719988,
@@ -723,7 +723,7 @@
   ],
   "buildings": 19419,
   "with_height": 1239,
-  "pmtiles_mb": 1.7,
+  "pmtiles_mb": 1.9,
   "pop_bbox": [
    100.57583221102999,
    14.242500279029986,
@@ -746,7 +746,7 @@
   ],
   "buildings": 15477,
   "with_height": 12432,
-  "pmtiles_mb": 1.5,
+  "pmtiles_mb": 1.7,
   "pop_bbox": [
    99.85749888056999,
    16.30666693743999,
@@ -769,7 +769,7 @@
   ],
   "buildings": 14401,
   "with_height": 3189,
-  "pmtiles_mb": 1.1,
+  "pmtiles_mb": 1.2,
   "pop_bbox": [
    100.18249887926999,
    14.713333610479987,
@@ -792,7 +792,7 @@
   ],
   "buildings": 12169,
   "with_height": 3874,
-  "pmtiles_mb": 1.1,
+  "pmtiles_mb": 1.3,
   "pop_bbox": [
    99.09916555026999,
    12.539166952509989,
@@ -815,7 +815,7 @@
   ],
   "buildings": 12009,
   "with_height": 287,
-  "pmtiles_mb": 0.9,
+  "pmtiles_mb": 1.1,
   "pop_bbox": [
    103.09166553429999,
    14.328333612019987,
@@ -838,7 +838,7 @@
   ],
   "buildings": 11318,
   "with_height": 4414,
-  "pmtiles_mb": 1.1,
+  "pmtiles_mb": 1.3,
   "pop_bbox": [
    99.16666554999999,
    13.147500283409986,
@@ -861,7 +861,7 @@
   ],
   "buildings": 11312,
   "with_height": 1872,
-  "pmtiles_mb": 0.9,
+  "pmtiles_mb": 1.1,
   "pop_bbox": [
    99.05333221711999,
    6.793333642159986,
@@ -884,7 +884,7 @@
   ],
   "buildings": 10762,
   "with_height": 10683,
-  "pmtiles_mb": 1.3,
+  "pmtiles_mb": 1.5,
   "pop_bbox": [
    99.25999888295999,
    18.997500260009986,
@@ -907,7 +907,7 @@
   ],
   "buildings": 9744,
   "with_height": 6314,
-  "pmtiles_mb": 0.9,
+  "pmtiles_mb": 1.0,
   "pop_bbox": [
    99.85333221391998,
    13.244166949689987,
@@ -930,7 +930,7 @@
   ],
   "buildings": 7987,
   "with_height": 7725,
-  "pmtiles_mb": 0.8,
+  "pmtiles_mb": 0.9,
   "pop_bbox": [
    101.86166553921998,
    13.235000283059986,
@@ -953,7 +953,7 @@
   ],
   "buildings": 7663,
   "with_height": 7663,
-  "pmtiles_mb": 1.0,
+  "pmtiles_mb": 1.2,
   "pop_bbox": [
    99.23416554973,
    7.835833637989988,
@@ -976,7 +976,7 @@
   ],
   "buildings": 7394,
   "with_height": 7394,
-  "pmtiles_mb": 0.8,
+  "pmtiles_mb": 0.9,
   "pop_bbox": [
    98.61083221889,
    7.3991669730699865,
@@ -999,7 +999,7 @@
   ],
   "buildings": 7359,
   "with_height": 7359,
-  "pmtiles_mb": 0.6,
+  "pmtiles_mb": 0.8,
   "pop_bbox": [
    104.42083219565,
    15.535000273859989,
@@ -1022,7 +1022,7 @@
   ],
   "buildings": 6952,
   "with_height": 3066,
-  "pmtiles_mb": 0.7,
+  "pmtiles_mb": 0.8,
   "pop_bbox": [
    98.62666555215999,
    9.600833630929987,
@@ -1045,7 +1045,7 @@
   ],
   "buildings": 6483,
   "with_height": 6482,
-  "pmtiles_mb": 0.8,
+  "pmtiles_mb": 0.9,
   "pop_bbox": [
    98.88083221781,
    17.205000267179987,
@@ -1068,7 +1068,7 @@
   ],
   "buildings": 3410,
   "with_height": 3410,
-  "pmtiles_mb": 0.5,
+  "pmtiles_mb": 0.6,
   "pop_bbox": [
    101.74916553966999,
    15.630000273479986,
@@ -1091,7 +1091,7 @@
   ],
   "buildings": 2938,
   "with_height": 2938,
-  "pmtiles_mb": 0.4,
+  "pmtiles_mb": 0.5,
   "pop_bbox": [
    98.66666555199998,
    17.422500266309985,
@@ -1114,7 +1114,7 @@
   ],
   "buildings": 2580,
   "with_height": 2580,
-  "pmtiles_mb": 0.2,
+  "pmtiles_mb": 0.3,
   "pop_bbox": [
    99.08583221698998,
    15.055833609109989,
@@ -1137,7 +1137,7 @@
   ],
   "buildings": 2193,
   "with_height": 2193,
-  "pmtiles_mb": 0.4,
+  "pmtiles_mb": 0.5,
   "pop_bbox": [
    98.98666555071999,
    15.855833605909986,
@@ -1183,7 +1183,7 @@
   ],
   "buildings": 2035,
   "with_height": 2024,
-  "pmtiles_mb": 0.3,
+  "pmtiles_mb": 0.4,
   "pop_bbox": [
    98.1833322206,
    13.724166947769987,
@@ -1252,7 +1252,7 @@
   ],
   "buildings": 1467,
   "with_height": 1467,
-  "pmtiles_mb": 0.2,
+  "pmtiles_mb": 0.3,
   "pop_bbox": [
    99.36749888252999,
    17.70416693184999,
@@ -1298,7 +1298,7 @@
   ],
   "buildings": 1102,
   "with_height": 1102,
-  "pmtiles_mb": 0.1,
+  "pmtiles_mb": 0.2,
   "pop_bbox": [
    103.27333220023999,
    15.403333607719986,
@@ -1666,7 +1666,7 @@
   ],
   "buildings": 197,
   "with_height": 195,
-  "pmtiles_mb": 0.0,
+  "pmtiles_mb": 0.1,
   "pop_bbox": [
    104.07249886371,
    16.182500271269987,

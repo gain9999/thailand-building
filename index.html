@@ -31,7 +31,7 @@
 <div id="panel">
   <b>Thailand buildings &amp; population</b><br>
   <span class="sub">Buildings: GlobalBuildingAtlas (footprints ODbL, heights CC BY-NC 4.0)<br>
-  People per building: WorldPop 2027 province pop split by footprint &times; floors (est.)</span><br>
+  People per building: range from DOPA 2025 + WorldPop 2027, split by footprint &times; floors (est.)</span><br>
   <select id="prov"></select><br>
   <label><input type="radio" name="mode" value="buildings" checked> buildings</label>
   <label><input type="radio" name="mode" value="population"> population</label>
@@ -62,7 +62,8 @@
 
   const H_COLOR = ["interpolate", ["linear"], ["coalesce", ["get", "h"], 0],
     0, "#fee5d9", 8, "#fcae91", 20, "#fb6a4a", 50, "#ef3b2c", 150, "#a50f15"];
-  const P_COLOR = ["interpolate", ["linear"], ["coalesce", ["get", "p"], 0],
+  const P_MID = ["/", ["+", ["coalesce", ["get", "plo"], 0], ["coalesce", ["get", "phi"], 0]], 2];
+  const P_COLOR = ["interpolate", ["linear"], P_MID,
     0, "#ffffcc", 1, "#ffeda0", 4, "#fed976", 12, "#feb24c",
     30, "#fd8d3c", 80, "#f03b20", 250, "#800026"];
 
@@ -171,10 +172,10 @@
   }
 
   function popupHTML(f) {
-    const h = f.properties.h, p = f.properties.p;
+    const h = f.properties.h, plo = f.properties.plo, phi = f.properties.phi;
     const hTxt = h != null ? `<b style="font-size:14px">${h} m</b>` : `<span style="color:#555">height n/a</span>`;
-    const pTxt = p != null ? `≈ <b>${p}</b> residents` : `residents n/a`;
-    return `${hTxt}<br><span style="font-size:13px">${pTxt}</span><br><span style="font-size:11px;color:#888">est. from WorldPop 2027</span>`;
+    const pTxt = (plo != null && phi != null) ? `≈ <b>${plo}–${phi}</b> residents` : `residents n/a`;
+    return `${hTxt}<br><span style="font-size:13px">${pTxt}</span><br><span style="font-size:11px;color:#888">est. range: DOPA 2025 – WorldPop 2027</span>`;
   }
   const CLICK_LAYERS = ["buildings-fill", "buildings-3d", "buildings-pop", "buildings-pop-3d"];
   map.on("load", async () => {

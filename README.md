@@ -21,8 +21,11 @@ Open `index.html` (or the GitHub Pages site) to browse: pick a province or pan t
 
 ## Population methodology
 
-Each province's WorldPop 2027 total is split among its buildings proportional to
-`footprint area × floors`, where `floors = max(1, round(height_m / 3))` (1 if no height).
+Each building gets an estimated resident **range** from two sources. Each province's
+total — WorldPop 2027 (projection) and DOPA 2025 (official registration) — is split
+among its buildings proportional to `footprint area × floors`, where
+`floors = max(1, round(height_m / 3))` (1 if no height). The viewer shows the low–high
+range (e.g. ≈ 5–8 residents).
 This is a dasymetric estimate: all else equal, bigger/taller buildings get more people.
 Caveats: assumes all floor space is residential; building coverage is incomplete in
 some provinces (the viewer flags these) — per-building numbers there are rough.
