@@ -338,19 +338,45 @@
   }
 
   function updateMeta() {
-    let totalBldgs = 0, totalDopa = 0, totalWp = 0;
-    for (const s of loaded) {
-      const p = provinces.find(x => x.slug === s);
-      if (p) {
-        totalBldgs += p.buildings || 0;
-        totalDopa += p.dopa_2025 || 0;
-        totalWp += p.pop_2027 || 0;
+    // Count actually visible buildings via rendered features
+    try {
+      const layerIds = [];
+      for (const s of loaded) {
+        const lid3d = layerId("buildings-3d", s);
+        const lidPop3d = layerId("buildings-pop-3d", s);
+        if (map.getLayer(lid3d)) layerIds.push(lid3d);
+        if (map.getLayer(lidPop3d)) layerIds.push(lidPop3d);
       }
+      if (layerIds.length === 0) {
+        document.getElementById("meta").textContent = "no province loaded";
+        return;
+      }
+      const feats = map.queryRenderedFeatures({ layers: layerIds });
+      // Dedupe (3d and pop-3d layers may return same features)
+      const seen = new Set();
+      let n = 0, ploSum = 0, phiSum = 0;
+      for (const f of feats) {
+        // Use a simple id from geometry to dedupe
+        const g = f.geometry.coordinates[0][0];
+        const key = g[0].toFixed(6) + "," + g[1].toFixed(6);
+        if (seen.has(key)) continue;
+        seen.add(key);
+        n++;
+        ploSum += f.properties.plo || 0;
+        phiSum += f.properties.phi || 0;
+      }
+      const fmt = x => x.toLocaleString("en-US", { maximumFractionDigits: 0 });
+      document.getElementById("meta").textContent =
+        `${fmt(n)} buildings in view · ≈ ${fmt(ploSum)}–${fmt(phiSum)} residents`;
+    } catch (e) {
+      // fallback to province totals
+      let totalBldgs = 0;
+      for (const s of loaded) {
+        const p = provinces.find(x => x.slug === s);
+        if (p) totalBldgs += p.buildings || 0;
+      }
+      document.getElementById("meta").textContent = `${totalBldgs.toLocaleString()} buildings loaded`;
     }
-    const fmt = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
-    document.getElementById("meta").textContent =
-      loaded.size === 0 ? "no province loaded" :
-      `${fmt(totalBldgs)} buildings · ≈ ${fmt(Math.min(totalDopa, totalWp))}–${fmt(Math.max(totalDopa, totalWp))} residents`;
   }
 
   // legacy single-province loader (dropdown): fly to province and ensure it's loaded
@@ -391,6 +417,12 @@
         inView.forEach(p => ensureProvince(p.slug));
       }
     }, 250);
+  });
+  // Re-count after tiles finish loading (queryRenderedFeatures needs rendered tiles)
+  let idleDeb = null;
+  map.on("idle", () => {
+    clearTimeout(idleDeb);
+    idleDeb = setTimeout(updateMeta, 500);
   });
 </script>
 </body>
