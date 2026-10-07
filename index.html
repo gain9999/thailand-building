@@ -57,7 +57,7 @@
   });
   map.addControl(new maplibregl.NavigationControl(), "bottom-right");
 
-  let provinces = [], current = null;
+  let provinces = [];
   let mode = "buildings";
 
   const H_COLOR = ["interpolate", ["linear"], ["coalesce", ["get", "h"], 0],
@@ -98,18 +98,32 @@
     return hits[0];
   }
 
+  function provincesInBounds(bounds) {
+    // bounds: [[west, south], [east, north]]
+    const [w, s] = bounds[0], [e, n] = bounds[1];
+    return provinces.filter(p => {
+      const b = p.bbox;
+      return !(b[2] < w || b[0] > e || b[3] < s || b[1] > n);
+    });
+  }
+
   function setVis(id, vis) {
     if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", vis ? "visible" : "none");
   }
 
+  const LAYER_TYPES = ["buildings-fill", "buildings-line", "buildings-3d", "buildings-pop", "buildings-pop-3d"];
+  function layerId(base, slug) { return base + "--" + slug; }
+
   function applyLayers() {
     const is3d = document.getElementById("threeD").checked;
     const isPop = mode === "population";
-    setVis("buildings-fill", !isPop && !is3d);
-    setVis("buildings-line", !isPop && !is3d);
-    setVis("buildings-3d", !isPop && is3d);
-    setVis("buildings-pop", isPop && !is3d);
-    setVis("buildings-pop-3d", isPop && is3d);
+    for (const slug of loaded) {
+      setVis(layerId("buildings-fill", slug), !isPop && !is3d);
+      setVis(layerId("buildings-line", slug), !isPop && !is3d);
+      setVis(layerId("buildings-3d", slug), !isPop && is3d);
+      setVis(layerId("buildings-pop", slug), isPop && !is3d);
+      setVis(layerId("buildings-pop-3d", slug), isPop && is3d);
+    }
     map.easeTo({ pitch: is3d ? 55 : 0, duration: 600 });
     const leg = document.getElementById("legend");
     leg.style.display = isPop ? "block" : "none";
@@ -117,57 +131,72 @@
       "linear-gradient(to right, #ffffcc, #ffeda0, #fed976, #feb24c, #fd8d3c, #f03b20, #800026)";
   }
 
-  async function loadProvince(slug, fly) {
+  const loaded = new Set();
+  const MAX_AUTO_PROVINCES = 3;
+
+  async function ensureProvince(slug) {
     const p = provinces.find(x => x.slug === slug);
-    if (!p || current === slug) return;
-    current = slug;
-    document.getElementById("prov").value = slug;
+    if (!p || loaded.has(slug)) return;
+    loaded.add(slug);
     const st = document.getElementById("status");
     st.textContent = "loading " + p.name + "…";
     try {
-      for (const l of ["buildings-fill", "buildings-line", "buildings-3d", "buildings-pop", "buildings-pop-3d"])
-        if (map.getLayer(l)) map.removeLayer(l);
-      if (map.getSource("prov")) map.removeSource("prov");
-      map.addSource("prov", { type: "vector", url: "pmtiles://./" + p.pmtiles });
-      map.addLayer({ id: "buildings-fill", type: "fill", source: "prov",
-        "source-layer": "buildings",
-        paint: { "fill-color": "#d9481c", "fill-opacity": 0.55 } });
-      map.addLayer({ id: "buildings-line", type: "line", source: "prov",
-        "source-layer": "buildings", minzoom: 13,
-        paint: { "line-color": "#a32e0e", "line-width": 0.6, "line-opacity": 0.7 } });
-      map.addLayer({ id: "buildings-3d", type: "fill-extrusion", source: "prov",
-        "source-layer": "buildings",
-        paint: {
-          "fill-extrusion-color": H_COLOR,
-          "fill-extrusion-height": ["coalesce", ["get", "h"], 4],
-          "fill-extrusion-base": 0,
-          "fill-extrusion-opacity": 0.9
-        } });
-      map.addLayer({ id: "buildings-pop", type: "fill", source: "prov",
-        "source-layer": "buildings",
-        paint: { "fill-color": P_COLOR, "fill-opacity": 0.75 } });
-      map.addLayer({ id: "buildings-pop-3d", type: "fill-extrusion", source: "prov",
-        "source-layer": "buildings",
-        paint: {
-          "fill-extrusion-color": P_COLOR,
-          "fill-extrusion-height": ["coalesce", ["get", "h"], 4],
-          "fill-extrusion-base": 0,
-          "fill-extrusion-opacity": 0.9
-        } });
+      const srcId = "prov--" + slug;
+      map.addSource(srcId, { type: "vector", url: "pmtiles://./" + p.pmtiles });
+      const L = (base, type, paint, extra) => map.addLayer(Object.assign({
+        id: layerId(base, slug), type, source: srcId, "source-layer": "buildings", paint
+      }, extra || {}));
+      L("buildings-fill", "fill", { "fill-color": "#d9481c", "fill-opacity": 0.55 });
+      L("buildings-line", "line", { "line-color": "#a32e0e", "line-width": 0.6, "line-opacity": 0.7 }, { minzoom: 13 });
+      L("buildings-3d", "fill-extrusion", {
+        "fill-extrusion-color": H_COLOR,
+        "fill-extrusion-height": ["coalesce", ["get", "h"], 4],
+        "fill-extrusion-base": 0, "fill-extrusion-opacity": 0.9 });
+      L("buildings-pop", "fill", { "fill-color": P_COLOR, "fill-opacity": 0.75 });
+      L("buildings-pop-3d", "fill-extrusion", {
+        "fill-extrusion-color": P_COLOR,
+        "fill-extrusion-height": ["coalesce", ["get", "h"], 4],
+        "fill-extrusion-base": 0, "fill-extrusion-opacity": 0.9 });
+      // click handlers for the new layers
+      for (const base of ["buildings-fill", "buildings-3d", "buildings-pop", "buildings-pop-3d"]) {
+        const lid = layerId(base, slug);
+        map.on("click", lid, (e) => {
+          const f = e.features && e.features[0];
+          if (!f) return;
+          new maplibregl.Popup({ closeButton: false })
+            .setLngLat(e.lngLat).setHTML(popupHTML(f)).addTo(map);
+        });
+        map.on("mouseenter", lid, () => { map.getCanvas().style.cursor = "pointer"; });
+        map.on("mouseleave", lid, () => { map.getCanvas().style.cursor = ""; });
+      }
       applyLayers();
-      const per1k = p.buildings / Math.max(p.pop_2027||1, 1) * 1000;
-      const covWarn = per1k < 5 ? " · ⚠ building footprints incomplete here" : "";
-      document.getElementById("meta").textContent =
-        `${(p.pop_2027||0).toLocaleString()} people (WorldPop 2027) · ` +
-        `${p.buildings.toLocaleString()} buildings (${(p.with_height||0).toLocaleString()} with height)${covWarn} · zoom ${map.getZoom().toFixed(1)}`;
+      updateMeta();
       st.textContent = "";
-      if (fly) {
+    } catch (e) {
+      st.textContent = "could not load " + slug;
+      loaded.delete(slug);
+    }
+  }
+
+  function updateMeta() {
+    const names = [...loaded].map(s => {
+      const p = provinces.find(x => x.slug === s);
+      return p ? p.name : s;
+    });
+    document.getElementById("meta").textContent =
+      `${names.join(", ") || "no province"} · zoom ${map.getZoom().toFixed(1)}`;
+  }
+
+  // legacy single-province loader (dropdown): fly to province and ensure it's loaded
+  async function loadProvince(slug, fly) {
+    await ensureProvince(slug);
+    document.getElementById("prov").value = slug;
+    if (fly) {
+      const p = provinces.find(x => x.slug === slug);
+      if (p) {
         const bb = p.bbox;
         map.fitBounds([[bb[0], bb[1]], [bb[2], bb[3]]], { padding: 30, maxZoom: 11 });
       }
-    } catch (e) {
-      st.textContent = "could not load " + slug;
-      current = null;
     }
   }
 
@@ -177,32 +206,24 @@
     const pTxt = (plo != null && phi != null) ? `≈ <b>${plo}–${phi}</b> residents` : `residents n/a`;
     return `${hTxt}<br><span style="font-size:13px">${pTxt}</span><br><span style="font-size:11px;color:#888">est. range: DOPA 2025 – WorldPop 2027</span>`;
   }
-  const CLICK_LAYERS = ["buildings-fill", "buildings-3d", "buildings-pop", "buildings-pop-3d"];
   map.on("load", async () => {
     await loadIndex();
-    loadProvince("bangkok_metropolis", false);
-    for (const l of CLICK_LAYERS) {
-      map.on("click", l, (e) => {
-        const f = e.features && e.features[0];
-        if (!f) return;
-        new maplibregl.Popup({ closeButton: false })
-          .setLngLat(e.lngLat).setHTML(popupHTML(f)).addTo(map);
-      });
-      map.on("mouseenter", l, () => { map.getCanvas().style.cursor = "pointer"; });
-      map.on("mouseleave", l, () => { map.getCanvas().style.cursor = ""; });
-    }
+    ensureProvince("bangkok_metropolis");
   });
 
   let deb = null;
   map.on("moveend", () => {
-    document.getElementById("meta").textContent =
-      document.getElementById("meta").textContent.replace(/zoom [\d.]+/, "zoom " + map.getZoom().toFixed(1));
+    updateMeta();
     if (!document.getElementById("follow").checked) return;
     clearTimeout(deb);
     deb = setTimeout(() => {
-      const c = map.getCenter();
-      const p = provinceAt(c.lng, c.lat);
-      if (p && p.slug !== current) loadProvince(p.slug, false);
+      const b = map.getBounds();
+      const inView = provincesInBounds([[b.getWest(), b.getSouth()], [b.getEast(), b.getNorth()]]);
+      // Only auto-load when the viewport covers a few provinces.
+      // Zoomed far out (whole country), don't download 10+ provinces.
+      if (inView.length > 0 && inView.length <= MAX_AUTO_PROVINCES) {
+        inView.forEach(p => ensureProvince(p.slug));
+      }
     }, 250);
   });
 </script>
