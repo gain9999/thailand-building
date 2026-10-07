@@ -338,12 +338,19 @@
   }
 
   function updateMeta() {
-    const names = [...loaded].map(s => {
+    let totalBldgs = 0, totalDopa = 0, totalWp = 0;
+    for (const s of loaded) {
       const p = provinces.find(x => x.slug === s);
-      return p ? p.name : s;
-    });
+      if (p) {
+        totalBldgs += p.buildings || 0;
+        totalDopa += p.dopa_2025 || 0;
+        totalWp += p.pop_2027 || 0;
+      }
+    }
+    const fmt = n => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
     document.getElementById("meta").textContent =
-      `${names.join(", ") || "no province"} · zoom ${map.getZoom().toFixed(1)}`;
+      loaded.size === 0 ? "no province loaded" :
+      `${fmt(totalBldgs)} buildings · ≈ ${fmt(Math.min(totalDopa, totalWp))}–${fmt(Math.max(totalDopa, totalWp))} residents`;
   }
 
   // legacy single-province loader (dropdown): fly to province and ensure it's loaded
