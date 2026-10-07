@@ -3,11 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thailand Buildings & Population — GlobalBuildingAtlas + WorldPop</title>
+<title>Thailand Buildings & Population — 3D</title>
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
-<script src="https://unpkg.com/geotiff@2.1.3/dist-browser/geotiff.js"></script>
 <style>
   html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; }
   #map { position: absolute; inset: 0; }
@@ -15,7 +14,7 @@
     position: absolute; top: 12px; left: 12px; z-index: 10;
     background: rgba(255,255,255,0.94); border-radius: 10px;
     padding: 10px 14px; font-size: 13px; line-height: 1.5;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15); max-width: 340px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); max-width: 350px;
   }
   #panel b { font-size: 14px; }
   #panel .sub { color: #555; font-size: 12px; }
@@ -23,10 +22,7 @@
   #panel label { font-size: 12px; color: #333; margin-right: 10px; }
   #status { color: #a32e0e; font-size: 12px; min-height: 1.2em; }
   #legend { display: none; margin-top: 6px; font-size: 11px; color: #555; }
-  #legend .bar {
-    height: 10px; border-radius: 3px; margin: 2px 0;
-    background: linear-gradient(to right, #ffffcc, #ffeda0, #fed976, #feb24c, #fd8d3c, #fc4e2a, #e31a1c, #800026);
-  }
+  #legend .bar { height: 10px; border-radius: 3px; margin: 2px 0; }
   #legend .ends { display: flex; justify-content: space-between; }
 </style>
 </head>
@@ -35,15 +31,16 @@
 <div id="panel">
   <b>Thailand buildings &amp; population</b><br>
   <span class="sub">Buildings: GlobalBuildingAtlas (footprints ODbL, heights CC BY-NC 4.0)<br>
-  Population: WorldPop 2027, 100 m COG, CC BY 4.0 &middot; one file per province</span><br>
+  People per building: WorldPop 2027 province pop split by footprint &times; floors (est.)</span><br>
   <select id="prov"></select><br>
   <label><input type="radio" name="mode" value="buildings" checked> buildings</label>
-  <label><input type="radio" name="mode" value="population"> population 2027</label><br>
+  <label><input type="radio" name="mode" value="population"> population</label>
+  <label><input type="checkbox" id="threeD"> 3D</label><br>
   <label><input type="checkbox" id="follow" checked> follow map</label>
   <div class="sub" id="meta">–</div>
   <div id="legend">
-    <div class="bar"></div>
-    <div class="ends"><span>few</span><span>people per 100 m cell (log scale)</span><span>many</span></div>
+    <div class="bar" id="legendBar"></div>
+    <div class="ends"><span>few</span><span id="legendMid">est. residents per building</span><span>many</span></div>
   </div>
   <div id="status"></div>
 </div>
@@ -62,10 +59,12 @@
 
   let provinces = [], current = null;
   let mode = "buildings";
-  const popCache = {}; // slug -> dataURL
 
-  const LUT = ["#ffffcc","#ffeda0","#fed976","#feb24c","#fd8d3c","#fc4e2a","#e31a1c","#bd0026","#800026"]
-    .map(h => [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)]);
+  const H_COLOR = ["interpolate", ["linear"], ["coalesce", ["get", "h"], 0],
+    0, "#fee5d9", 8, "#fcae91", 20, "#fb6a4a", 50, "#ef3b2c", 150, "#a50f15"];
+  const P_COLOR = ["interpolate", ["linear"], ["coalesce", ["get", "p"], 0],
+    0, "#ffffcc", 1, "#ffeda0", 4, "#fed976", 12, "#feb24c",
+    30, "#fd8d3c", 80, "#f03b20", 250, "#800026"];
 
   async function loadIndex() {
     const r = await fetch("./provinces.json");
@@ -83,7 +82,8 @@
       loadProvince(sel.value, true);
     });
     document.querySelectorAll('input[name="mode"]').forEach(el =>
-      el.addEventListener("change", () => { mode = el.value; applyMode(); }));
+      el.addEventListener("change", () => { mode = el.value; applyLayers(); }));
+    document.getElementById("threeD").addEventListener("change", applyLayers);
   }
 
   function provinceAt(lng, lat) {
@@ -97,66 +97,23 @@
     return hits[0];
   }
 
-  // Render a province's population COG to a PNG data URL (YlOrRd, log scale)
-  async function renderPopulation(p) {
-    if (popCache[p.slug]) return popCache[p.slug];
-    const tiff = await GeoTIFF.fromUrl("./WorldPop/" + p.pop_tif);
-    const image = await tiff.getImage();
-    const w = image.getWidth(), h = image.getHeight();
-    const data = (await image.readRasters())[0];
-    const vmin = 0.5, lden = Math.log(p.pop_vmax / vmin);
-    const canvas = document.createElement("canvas");
-    canvas.width = w; canvas.height = h;
-    const ctx = canvas.getContext("2d");
-    const out = ctx.createImageData(w, h);
-    const px = out.data;
-    for (let i = 0; i < data.length; i++) {
-      const v = data[i];
-      if (v <= 0) continue;
-      let t = Math.log(v / vmin) / lden;
-      t = t < 0 ? 0 : t > 1 ? 1 : t;
-      const seg = t * (LUT.length - 1);
-      const i0 = Math.floor(seg), f = seg - i0;
-      const c0 = LUT[i0], c1 = LUT[Math.min(i0 + 1, LUT.length - 1)];
-      const o = i * 4;
-      px[o]     = c0[0] + (c1[0] - c0[0]) * f;
-      px[o + 1] = c0[1] + (c1[1] - c0[1]) * f;
-      px[o + 2] = c0[2] + (c1[2] - c0[2]) * f;
-      px[o + 3] = 255;
-    }
-    ctx.putImageData(out, 0, 0);
-    const url = canvas.toDataURL("image/png");
-    popCache[p.slug] = url;
-    return url;
+  function setVis(id, vis) {
+    if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", vis ? "visible" : "none");
   }
 
-  async function applyMode() {
-    const showB = mode === "buildings";
-    for (const l of ["buildings-fill", "buildings-line"])
-      if (map.getLayer(l)) map.setLayoutProperty(l, "visibility", showB ? "visible" : "none");
-    document.getElementById("legend").style.display = showB ? "none" : "block";
-    if (showB) {
-      if (map.getLayer("pop-layer")) map.setLayoutProperty("pop-layer", "visibility", "none");
-      return;
-    }
-    const p = provinces.find(x => x.slug === current);
-    if (!p) return;
-    const st = document.getElementById("status");
-    try {
-      if (!popCache[p.slug]) st.textContent = "rendering population…";
-      const url = await renderPopulation(p);
-      if (mode !== "population" || current !== p.slug) return; // user moved on
-      if (map.getLayer("pop-layer")) map.removeLayer("pop-layer");
-      if (map.getSource("pop")) map.removeSource("pop");
-      const b = p.pop_bbox;
-      map.addSource("pop", { type: "image", url,
-        coordinates: [[b[0], b[3]], [b[2], b[3]], [b[2], b[1]], [b[0], b[1]]] });
-      map.addLayer({ id: "pop-layer", type: "raster", source: "pop",
-        paint: { "raster-opacity": 0.85 } }, "buildings-fill");
-      st.textContent = "";
-    } catch (e) {
-      st.textContent = "could not render population";
-    }
+  function applyLayers() {
+    const is3d = document.getElementById("threeD").checked;
+    const isPop = mode === "population";
+    setVis("buildings-fill", !isPop && !is3d);
+    setVis("buildings-line", !isPop && !is3d);
+    setVis("buildings-3d", !isPop && is3d);
+    setVis("buildings-pop", isPop && !is3d);
+    setVis("buildings-pop-3d", isPop && is3d);
+    map.easeTo({ pitch: is3d ? 55 : 0, duration: 600 });
+    const leg = document.getElementById("legend");
+    leg.style.display = isPop ? "block" : "none";
+    document.getElementById("legendBar").style.background =
+      "linear-gradient(to right, #ffffcc, #ffeda0, #fed976, #feb24c, #fd8d3c, #f03b20, #800026)";
   }
 
   async function loadProvince(slug, fly) {
@@ -167,10 +124,9 @@
     const st = document.getElementById("status");
     st.textContent = "loading " + p.name + "…";
     try {
-      for (const l of ["buildings-fill", "buildings-line", "pop-layer"])
+      for (const l of ["buildings-fill", "buildings-line", "buildings-3d", "buildings-pop", "buildings-pop-3d"])
         if (map.getLayer(l)) map.removeLayer(l);
-      for (const s of ["prov", "pop"])
-        if (map.getSource(s)) map.removeSource(s);
+      if (map.getSource("prov")) map.removeSource("prov");
       map.addSource("prov", { type: "vector", url: "pmtiles://./" + p.pmtiles });
       map.addLayer({ id: "buildings-fill", type: "fill", source: "prov",
         "source-layer": "buildings",
@@ -178,11 +134,32 @@
       map.addLayer({ id: "buildings-line", type: "line", source: "prov",
         "source-layer": "buildings", minzoom: 13,
         paint: { "line-color": "#a32e0e", "line-width": 0.6, "line-opacity": 0.7 } });
+      map.addLayer({ id: "buildings-3d", type: "fill-extrusion", source: "prov",
+        "source-layer": "buildings",
+        paint: {
+          "fill-extrusion-color": H_COLOR,
+          "fill-extrusion-height": ["coalesce", ["get", "h"], 4],
+          "fill-extrusion-base": 0,
+          "fill-extrusion-opacity": 0.9
+        } });
+      map.addLayer({ id: "buildings-pop", type: "fill", source: "prov",
+        "source-layer": "buildings",
+        paint: { "fill-color": P_COLOR, "fill-opacity": 0.75 } });
+      map.addLayer({ id: "buildings-pop-3d", type: "fill-extrusion", source: "prov",
+        "source-layer": "buildings",
+        paint: {
+          "fill-extrusion-color": P_COLOR,
+          "fill-extrusion-height": ["coalesce", ["get", "h"], 4],
+          "fill-extrusion-base": 0,
+          "fill-extrusion-opacity": 0.9
+        } });
+      applyLayers();
+      const per1k = p.buildings / Math.max(p.pop_2027||1, 1) * 1000;
+      const covWarn = per1k < 5 ? " · ⚠ building footprints incomplete here" : "";
       document.getElementById("meta").textContent =
         `${(p.pop_2027||0).toLocaleString()} people (WorldPop 2027) · ` +
-        `${p.buildings.toLocaleString()} buildings (${(p.with_height||0).toLocaleString()} with height) · zoom ${map.getZoom().toFixed(1)}`;
+        `${p.buildings.toLocaleString()} buildings (${(p.with_height||0).toLocaleString()} with height)${covWarn} · zoom ${map.getZoom().toFixed(1)}`;
       st.textContent = "";
-      applyMode();
       if (fly) {
         const bb = p.bbox;
         map.fitBounds([[bb[0], bb[1]], [bb[2], bb[3]]], { padding: 30, maxZoom: 11 });
@@ -193,24 +170,28 @@
     }
   }
 
+  function popupHTML(f) {
+    const h = f.properties.h, p = f.properties.p;
+    const hTxt = h != null ? `<b style="font-size:14px">${h} m</b>` : `<span style="color:#555">height n/a</span>`;
+    const pTxt = p != null ? `≈ <b>${p}</b> residents` : `residents n/a`;
+    return `${hTxt}<br><span style="font-size:13px">${pTxt}</span><br><span style="font-size:11px;color:#888">est. from WorldPop 2027</span>`;
+  }
+  const CLICK_LAYERS = ["buildings-fill", "buildings-3d", "buildings-pop", "buildings-pop-3d"];
   map.on("load", async () => {
     await loadIndex();
     loadProvince("bangkok_metropolis", false);
+    for (const l of CLICK_LAYERS) {
+      map.on("click", l, (e) => {
+        const f = e.features && e.features[0];
+        if (!f) return;
+        new maplibregl.Popup({ closeButton: false })
+          .setLngLat(e.lngLat).setHTML(popupHTML(f)).addTo(map);
+      });
+      map.on("mouseenter", l, () => { map.getCanvas().style.cursor = "pointer"; });
+      map.on("mouseleave", l, () => { map.getCanvas().style.cursor = ""; });
+    }
   });
 
-  map.on("click", "buildings-fill", (e) => {
-    const f = e.features && e.features[0];
-    if (!f) return;
-    const h = f.properties.h;
-    new maplibregl.Popup({ closeButton: false })
-      .setLngLat(e.lngLat)
-      .setHTML(h != null
-        ? `<b style="font-size:14px">${h} m</b>`
-        : `<span style="color:#555;font-size:13px">no height data</span>`)
-      .addTo(map);
-  });
-  map.on("mouseenter", "buildings-fill", () => { map.getCanvas().style.cursor = "pointer"; });
-  map.on("mouseleave", "buildings-fill", () => { map.getCanvas().style.cursor = ""; });
   let deb = null;
   map.on("moveend", () => {
     document.getElementById("meta").textContent =

@@ -1,22 +1,31 @@
 # Thailand Climate-Risk Data — Buildings & Population
 
-Per-province building footprints with heights and 2027 population grids for all 77 Thai provinces, plus a browser viewer (`index.html`).
+Per-province building footprints with heights and per-building population estimates for all 77 Thai provinces, plus a 2D/3D browser viewer (`index.html`).
 
 ## Layout
 
 ```
-index.html                  viewer (buildings / population toggle, click a building for its height)
+index.html                  viewer: buildings / population toggle, 3D extrusion toggle,
+                            click a building for its height + estimated residents
 provinces.json              index: names, bboxes, building counts, height coverage,
                             2027 population totals, color-scale max, file paths
 GlobalBuildingAtlas/        77 × <province>.pmtiles — building footprints, vector tiles z9–15,
-                            layer `buildings`, property `h` = height in meters where available
-                            (1.07M of 2.20M buildings, 48.6%)
+                            layer `buildings`, properties:
+                              `h` = height in meters where available (1.07M of 2.20M, 48.6%)
+                              `p` = estimated residents (see methodology below)
 WorldPop/                   77 × <province>_pop2027.tif — 2027 population, 100 m
-                            Cloud-Optimized GeoTIFF, people per cell, float32.
-                            The viewer renders these client-side (geotiff.js); no PNG copies needed.
+                            Cloud-Optimized GeoTIFF, people per cell, float32 (source data).
 ```
 
-Open `index.html` (or the GitHub Pages site) to browse: pick a province or pan the map, toggle between buildings and population.
+Open `index.html` (or the GitHub Pages site) to browse: pick a province or pan the map, toggle between buildings and population, switch on 3D.
+
+## Population methodology
+
+Each province's WorldPop 2027 total is split among its buildings proportional to
+`footprint area × floors`, where `floors = max(1, round(height_m / 3))` (1 if no height).
+This is a dasymetric estimate: all else equal, bigger/taller buildings get more people.
+Caveats: assumes all floor space is residential; building coverage is incomplete in
+some provinces (the viewer flags these) — per-building numbers there are rough.
 
 ## Sources & licenses
 
