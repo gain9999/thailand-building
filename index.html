@@ -7,6 +7,7 @@
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
+<script src="https://unpkg.com/pako@2.1.0/dist/pako.min.js"></script>
 <style>
   html, body { margin: 0; height: 100%; font-family: system-ui, sans-serif; }
   #map { position: absolute; inset: 0; }
@@ -344,12 +345,21 @@
         map.on("mouseleave", lid, () => { map.getCanvas().style.cursor = ""; });
       }
       // Load full metadata for this province (gzipped JSON)
+      // Use DecompressionStream if available, fallback to pako for older browsers (iOS < 16.4)
       fetch(`./metadata/${slug}.json.gz`)
         .then(r => {
           if (!r.ok) return null;
-          const ds = new DecompressionStream('gzip');
-          const stream = r.body.pipeThrough(ds);
-          return new Response(stream).json();
+          if (typeof DecompressionStream !== 'undefined') {
+            const ds = new DecompressionStream('gzip');
+            const stream = r.body.pipeThrough(ds);
+            return new Response(stream).json();
+          } else {
+            // Fallback: use pako (loaded via CDN)
+            return r.arrayBuffer().then(buf => {
+              const decompressed = pako.ungzip(new Uint8Array(buf), { to: 'string' });
+              return JSON.parse(decompressed);
+            });
+          }
         })
         .then(d => { if (d) metaCache[slug] = d; })
         .catch(() => {});
