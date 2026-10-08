@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Thailand Buildings & Population — 3D</title>
+<title>Thailand Building Inventory</title>
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/pmtiles@3.2.0/dist/pmtiles.js"></script>
@@ -72,8 +72,8 @@
 <div id="map"></div>
 <div id="panel">
   <button id="infoBtn" title="About this data">ⓘ</button>
-  <button id="minBtn" title="Minimize panel" style="float:right;cursor:pointer;font-size:14px;line-height:1;width:22px;height:22px;text-align:center;border-radius:50%;background:#eee;color:#333;border:1px solid #ccc;padding:0;margin-left:4px;">–</button>
-  <b>Thailand buildings &amp; population</b><br>
+  <button id="minBtn" title="Minimize panel" style="float:right;cursor:pointer;font-size:14px;line-height:1;width:22px;height:22px;text-align:center;border-radius:50%;background:#eee;color:#333;border:1px solid #ccc;padding:0;margin-left:8px;">–</button>
+  <b>Thailand Building Inventory</b><br>
   <div id="panelBody">
   <span class="sub">Buildings: GlobalBuildingAtlas (footprints ODbL, heights CC BY-NC 4.0)<br>
   People per building: range from DOPA 2025 + WorldPop 2027, split by footprint &times; floors (est.)</span><br>
@@ -177,9 +177,11 @@
   // minimizable panel
   const minBtn = document.getElementById("minBtn");
   const panelBody = document.getElementById("panelBody");
+  const infoBtn = document.getElementById("infoBtn");
   minBtn.addEventListener("click", () => {
     const hidden = panelBody.style.display === "none";
     panelBody.style.display = hidden ? "block" : "none";
+    infoBtn.style.display = hidden ? "block" : "none";
     minBtn.textContent = hidden ? "–" : "+";
     minBtn.title = hidden ? "Minimize panel" : "Expand panel";
   });
@@ -233,7 +235,7 @@
 
   const H_COLOR = ["interpolate", ["linear"], ["coalesce", ["get", "h"], 0],
     0, "#fee5d9", 8, "#fcae91", 20, "#fb6a4a", 50, "#ef3b2c", 150, "#a50f15"];
-  const P_MID = ["/", ["+", ["coalesce", ["get", "plo"], 0], ["coalesce", ["get", "phi"], 0]], 2];
+  const P_MID = ["coalesce", ["get", "pop"], 0];
   const P_COLOR = ["interpolate", ["linear"], P_MID,
     0, "#ffffcc", 1, "#ffeda0", 4, "#fed976", 12, "#feb24c",
     30, "#fd8d3c", 80, "#f03b20", 250, "#800026"];
@@ -303,6 +305,7 @@
   }
 
   const loaded = new Set();
+  const metaCache = {}; // slug -> {pluscode: {plo, phi, w, l, a, ...osm}}
   const MAX_AUTO_PROVINCES = 3;
 
   async function ensureProvince(slug) {
@@ -335,11 +338,21 @@
           const f = e.features && e.features[0];
           if (!f) return;
           new maplibregl.Popup({ closeButton: false })
-            .setLngLat(e.lngLat).setHTML(popupHTML(f)).addTo(map);
+            .setLngLat(e.lngLat).setHTML(popupHTML(f, slug)).addTo(map);
         });
         map.on("mouseenter", lid, () => { map.getCanvas().style.cursor = "pointer"; });
         map.on("mouseleave", lid, () => { map.getCanvas().style.cursor = ""; });
       }
+      // Load full metadata for this province (gzipped JSON)
+      fetch(`./metadata/${slug}.json.gz`)
+        .then(r => {
+          if (!r.ok) return null;
+          const ds = new DecompressionStream('gzip');
+          const stream = r.body.pipeThrough(ds);
+          return new Response(stream).json();
+        })
+        .then(d => { if (d) metaCache[slug] = d; })
+        .catch(() => {});
       applyLayers();
       updateOsmVisibility();
       updateMeta();
@@ -405,12 +418,28 @@
     }
   }
 
-  function popupHTML(f) {
+  function popupHTML(f, slug) {
     const p = f.properties;
     const hTxt = p.h != null ? `Height: <b>${p.h} m</b>` : `<span style="color:#555">Height: n/a</span>`;
-    const dimTxt = (p.w != null) ? `<br>Width x Length: ${p.w} x ${p.l} m<br>Area: ${p.a} m²` : ``;
-    const pTxt = (p.plo != null && p.phi != null) ? `Residents: ≈ <b>${p.plo}–${p.phi}</b>` : `Residents: n/a`;
-    return `<span style="font-size:13px">${hTxt}${dimTxt}<br>${pTxt}</span><br><span style="font-size:11px;color:#888">est. range: DOPA 2025 – WorldPop 2027</span>`;
+    // Look up metadata by Plus Code
+    let dimTxt = "", pTxt = "Residents: n/a", osmTxt = "";
+    if (slug && metaCache[slug] && p.id) {
+      const m = metaCache[slug][p.id];
+      if (m) {
+        if (m.w != null) dimTxt = `<br>Width x Length: ${m.w} x ${m.l} m<br>Area: ${m.a} m²`;
+        if (m.plo != null && m.phi != null) pTxt = `Residents: ≈ <b>${m.plo}–${m.phi}</b>`;
+        const parts = [];
+        if (m.building && m.building !== 'yes') parts.push(`Type: ${m.building}`);
+        if (m['building:levels']) parts.push(`Levels: ${m['building:levels']}`);
+        if (m.amenity) parts.push(`Amenity: ${m.amenity}`);
+        if (m.shop) parts.push(`Shop: ${m.shop}`);
+        if (m.office) parts.push(`Office: ${m.office}`);
+        if (m['building:material']) parts.push(`Material: ${m['building:material']}`);
+        if (m['roof:shape']) parts.push(`Roof: ${m['roof:shape']}`);
+        if (parts.length > 0) osmTxt = `<br><span style="font-size:12px;color:#555">${parts.join('<br>')}</span>`;
+      }
+    }
+    return `<span style="font-size:13px">${hTxt}${dimTxt}<br>${pTxt}${osmTxt}</span><br><span style="font-size:11px;color:#888">est. range: DOPA 2025 – WorldPop 2027</span>`;
   }
   map.on("load", async () => {
     await loadIndex();

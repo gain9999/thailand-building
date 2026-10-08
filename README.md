@@ -1,4 +1,4 @@
-# Thailand Buildings & Population
+# Thailand Building Inventory
 
 Per-province building footprints with heights and per-building population estimates for all 77 Thai provinces, plus a 2D/3D browser viewer (`index.html`).
 
