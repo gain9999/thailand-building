@@ -72,7 +72,9 @@
 <div id="map"></div>
 <div id="panel">
   <button id="infoBtn" title="About this data">ⓘ</button>
+  <button id="minBtn" title="Minimize panel" style="float:right;cursor:pointer;font-size:14px;line-height:1;width:22px;height:22px;text-align:center;border-radius:50%;background:#eee;color:#333;border:1px solid #ccc;padding:0;margin-left:4px;">–</button>
   <b>Thailand buildings &amp; population</b><br>
+  <div id="panelBody">
   <span class="sub">Buildings: GlobalBuildingAtlas (footprints ODbL, heights CC BY-NC 4.0)<br>
   People per building: range from DOPA 2025 + WorldPop 2027, split by footprint &times; floors (est.)</span><br>
   <input id="searchBox" type="text" placeholder="Search place in Thailand… (Enter)" autocomplete="off">
@@ -88,6 +90,7 @@
     <div class="ends"><span>few</span><span id="legendMid">est. residents per building</span><span>many</span></div>
   </div>
   <div id="status"></div>
+  </div>
 </div>
 <div id="attrib">© <a href="https://github.com/zhu-xlab/GlobalBuildingAtlas" target="_blank">GlobalBuildingAtlas</a> · <a href="https://www.worldpop.org" target="_blank">WorldPop</a> · <a href="https://www.dopa.go.th" target="_blank">DOPA</a></div>
 <div id="infoModal">
@@ -170,6 +173,16 @@
   document.getElementById("infoBtn").addEventListener("click", () => { infoModal.style.display = "block"; });
   document.getElementById("infoClose").addEventListener("click", () => { infoModal.style.display = "none"; });
   infoModal.addEventListener("click", (e) => { if (e.target === infoModal) infoModal.style.display = "none"; });
+
+  // minimizable panel
+  const minBtn = document.getElementById("minBtn");
+  const panelBody = document.getElementById("panelBody");
+  minBtn.addEventListener("click", () => {
+    const hidden = panelBody.style.display === "none";
+    panelBody.style.display = hidden ? "block" : "none";
+    minBtn.textContent = hidden ? "–" : "+";
+    minBtn.title = hidden ? "Minimize panel" : "Expand panel";
+  });
 
   // place search via Nominatim (biased to Thailand)
   const searchBox = document.getElementById("searchBox");
@@ -393,10 +406,11 @@
   }
 
   function popupHTML(f) {
-    const h = f.properties.h, plo = f.properties.plo, phi = f.properties.phi;
-    const hTxt = h != null ? `<b style="font-size:14px">${h} m</b>` : `<span style="color:#555">height n/a</span>`;
-    const pTxt = (plo != null && phi != null) ? `≈ <b>${plo}–${phi}</b> residents` : `residents n/a`;
-    return `${hTxt}<br><span style="font-size:13px">${pTxt}</span><br><span style="font-size:11px;color:#888">est. range: DOPA 2025 – WorldPop 2027</span>`;
+    const p = f.properties;
+    const hTxt = p.h != null ? `Height: <b>${p.h} m</b>` : `<span style="color:#555">Height: n/a</span>`;
+    const dimTxt = (p.w != null) ? `<br>Width x Length: ${p.w} x ${p.l} m<br>Area: ${p.a} m²` : ``;
+    const pTxt = (p.plo != null && p.phi != null) ? `Residents: ≈ <b>${p.plo}–${p.phi}</b>` : `Residents: n/a`;
+    return `<span style="font-size:13px">${hTxt}${dimTxt}<br>${pTxt}</span><br><span style="font-size:11px;color:#888">est. range: DOPA 2025 – WorldPop 2027</span>`;
   }
   map.on("load", async () => {
     await loadIndex();
