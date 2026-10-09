@@ -316,11 +316,24 @@
     const st = document.getElementById("status");
     st.textContent = "loading " + p.name + "…";
     try {
-      const srcId = "prov--" + slug;
-      map.addSource(srcId, { type: "vector", url: "pmtiles://./" + p.pmtiles });
-      const L = (base, type, paint, extra) => map.addLayer(Object.assign({
-        id: layerId(base, slug), type, source: srcId, "source-layer": "buildings", paint
-      }, extra || {}));
+      // Bangkok is split into west/east tiles (GitHub 100MB limit) — load both
+      const pmtilesFiles = (slug === "bangkok_metropolis")
+        ? ["GlobalBuildingAtlas/bangkok_west.pmtiles", "GlobalBuildingAtlas/bangkok_east.pmtiles"]
+        : [p.pmtiles];
+      const srcIds = [];
+      for (const pm of pmtilesFiles) {
+        const srcId = "prov--" + slug + "--" + pm.split("/").pop().replace(".pmtiles", "");
+        map.addSource(srcId, { type: "vector", url: "pmtiles://./" + pm });
+        srcIds.push(srcId);
+      }
+      const L = (base, type, paint, extra) => {
+        for (const srcId of srcIds) {
+          const lid = layerId(base, slug) + "--" + srcId.split("--").pop();
+          map.addLayer(Object.assign({
+            id: lid, type, source: srcId, "source-layer": "buildings", paint
+          }, extra || {}));
+        }
+      };
       L("buildings-fill", "fill", { "fill-color": "#d9481c", "fill-opacity": 0.55 });
       L("buildings-line", "line", { "line-color": "#a32e0e", "line-width": 0.6, "line-opacity": 0.7 }, { minzoom: 13 });
       L("buildings-3d", "fill-extrusion", {
@@ -334,15 +347,17 @@
         "fill-extrusion-base": 0, "fill-extrusion-opacity": 0.9 });
       // click handlers for the new layers
       for (const base of ["buildings-fill", "buildings-3d", "buildings-pop", "buildings-pop-3d"]) {
-        const lid = layerId(base, slug);
-        map.on("click", lid, (e) => {
-          const f = e.features && e.features[0];
-          if (!f) return;
-          new maplibregl.Popup({ closeButton: false })
-            .setLngLat(e.lngLat).setHTML(popupHTML(f, slug)).addTo(map);
-        });
-        map.on("mouseenter", lid, () => { map.getCanvas().style.cursor = "pointer"; });
-        map.on("mouseleave", lid, () => { map.getCanvas().style.cursor = ""; });
+        const lids = srcIds.map(srcId => layerId(base, slug) + "--" + srcId.split("--").pop());
+        for (const lid of lids) {
+          map.on("click", lid, (e) => {
+            const f = e.features && e.features[0];
+            if (!f) return;
+            new maplibregl.Popup({ closeButton: false })
+              .setLngLat(e.lngLat).setHTML(popupHTML(f, slug)).addTo(map);
+          });
+          map.on("mouseenter", lid, () => { map.getCanvas().style.cursor = "pointer"; });
+          map.on("mouseleave", lid, () => { map.getCanvas().style.cursor = ""; });
+        }
       }
       // Load full metadata for this province (gzipped JSON)
       // Use DecompressionStream if available, fallback to pako for older browsers (iOS < 16.4)
